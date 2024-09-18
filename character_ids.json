@@ -1,0 +1,978 @@
+[
+    {
+        "id": "1",
+        "name": "A-Bomb"
+    },
+    {
+        "id": "2",
+        "name": "Abe Sapien"
+    },
+    {
+        "id": "3",
+        "name": "Abin Sur"
+    },
+    {
+        "id": "4",
+        "name": "Abomination"
+    },
+    {
+        "id": "5",
+        "name": "Abraxas"
+    },
+    {
+        "id": "6",
+        "name": "Absorbing Man"
+    },
+    {
+        "id": "7",
+        "name": "Adam Monroe"
+    },
+    {
+        "id": "8",
+        "name": "Adam Strange"
+    },
+    {
+        "id": "9",
+        "name": "Agent 13"
+    },
+    {
+        "id": "10",
+        "name": "Agent Bob"
+    },
+    {
+        "id": "11",
+        "name": "Agent Zero"
+    },
+    {
+        "id": "12",
+        "name": "Air-Walker"
+    },
+    {
+        "id": "13",
+        "name": "Ajax"
+    },
+    {
+        "id": "14",
+        "name": "Alan Scott"
+    },
+    {
+        "id": "15",
+        "name": "Alex Mercer"
+    },
+    {
+        "id": "16",
+        "name": "Alex Woolsly"
+    },
+    {
+        "id": "17",
+        "name": "Alfred Pennyworth"
+    },
+    {
+        "id": "18",
+        "name": "Alien"
+    },
+    {
+        "id": "19",
+        "name": "Allan Quatermain"
+    },
+    {
+        "id": "20",
+        "name": "Amazo"
+    },
+    {
+        "id": "21",
+        "name": "Ammo"
+    },
+    {
+        "id": "22",
+        "name": "Ando Masahashi"
+    },
+    {
+        "id": "23",
+        "name": "Angel"
+    },
+    {
+        "id": "24",
+        "name": "Angel"
+    },
+    {
+        "id": "25",
+        "name": "Angel Dust"
+    },
+    {
+        "id": "26",
+        "name": "Angel Salvadore"
+    },
+    {
+        "id": "27",
+        "name": "Angela"
+    },
+    {
+        "id": "28",
+        "name": "Animal Man"
+    },
+    {
+        "id": "29",
+        "name": "Annihilus"
+    },
+    {
+        "id": "30",
+        "name": "Ant-Man"
+    },
+    {
+        "id": "31",
+        "name": "Ant-Man II"
+    },
+    {
+        "id": "32",
+        "name": "Anti-Monitor"
+    },
+    {
+        "id": "33",
+        "name": "Anti-Spawn"
+    },
+    {
+        "id": "34",
+        "name": "Anti-Venom"
+    },
+    {
+        "id": "35",
+        "name": "Apocalypse"
+    },
+    {
+        "id": "36",
+        "name": "Aquababy"
+    },
+    {
+        "id": "37",
+        "name": "Aqualad"
+    },
+    {
+        "id": "38",
+        "name": "Aquaman"
+    },
+    {
+        "id": "39",
+        "name": "Arachne"
+    },
+    {
+        "id": "40",
+        "name": "Archangel"
+    },
+    {
+        "id": "41",
+        "name": "Arclight"
+    },
+    {
+        "id": "42",
+        "name": "Ardina"
+    },
+    {
+        "id": "43",
+        "name": "Ares"
+    },
+    {
+        "id": "44",
+        "name": "Ariel"
+    },
+    {
+        "id": "45",
+        "name": "Armor"
+    },
+    {
+        "id": "46",
+        "name": "Arsenal"
+    },
+    {
+        "id": "47",
+        "name": "Astro Boy"
+    },
+    {
+        "id": "48",
+        "name": "Atlas"
+    },
+    {
+        "id": "49",
+        "name": "Atlas"
+    },
+    {
+        "id": "50",
+        "name": "Atom"
+    },
+    {
+        "id": "51",
+        "name": "Atom"
+    },
+    {
+        "id": "52",
+        "name": "Atom Girl"
+    },
+    {
+        "id": "53",
+        "name": "Atom II"
+    },
+    {
+        "id": "54",
+        "name": "Atom III"
+    },
+    {
+        "id": "55",
+        "name": "Atom IV"
+    },
+    {
+        "id": "56",
+        "name": "Aurora"
+    },
+    {
+        "id": "57",
+        "name": "Azazel"
+    },
+    {
+        "id": "58",
+        "name": "Azrael"
+    },
+    {
+        "id": "59",
+        "name": "Aztar"
+    },
+    {
+        "id": "60",
+        "name": "Bane"
+    },
+    {
+        "id": "61",
+        "name": "Banshee"
+    },
+    {
+        "id": "62",
+        "name": "Bantam"
+    },
+    {
+        "id": "63",
+        "name": "Batgirl"
+    },
+    {
+        "id": "64",
+        "name": "Batgirl"
+    },
+    {
+        "id": "65",
+        "name": "Batgirl III"
+    },
+    {
+        "id": "66",
+        "name": "Batgirl IV"
+    },
+    {
+        "id": "67",
+        "name": "Batgirl V"
+    },
+    {
+        "id": "68",
+        "name": "Batgirl VI"
+    },
+    {
+        "id": "69",
+        "name": "Batman"
+    },
+    {
+        "id": "70",
+        "name": "Batman"
+    },
+    {
+        "id": "71",
+        "name": "Batman II"
+    },
+    {
+        "id": "72",
+        "name": "Battlestar"
+    },
+    {
+        "id": "73",
+        "name": "Batwoman V"
+    },
+    {
+        "id": "74",
+        "name": "Beak"
+    },
+    {
+        "id": "75",
+        "name": "Beast"
+    },
+    {
+        "id": "76",
+        "name": "Beast Boy"
+    },
+    {
+        "id": "77",
+        "name": "Beetle"
+    },
+    {
+        "id": "78",
+        "name": "Ben 10"
+    },
+    {
+        "id": "79",
+        "name": "Beta Ray Bill"
+    },
+    {
+        "id": "80",
+        "name": "Beyonder"
+    },
+    {
+        "id": "81",
+        "name": "Big Barda"
+    },
+    {
+        "id": "82",
+        "name": "Big Daddy"
+    },
+    {
+        "id": "83",
+        "name": "Big Man"
+    },
+    {
+        "id": "84",
+        "name": "Bill Harken"
+    },
+    {
+        "id": "85",
+        "name": "Billy Kincaid"
+    },
+    {
+        "id": "86",
+        "name": "Binary"
+    },
+    {
+        "id": "87",
+        "name": "Bionic Woman"
+    },
+    {
+        "id": "88",
+        "name": "Bird-Brain"
+    },
+    {
+        "id": "89",
+        "name": "Bird-Man"
+    },
+    {
+        "id": "90",
+        "name": "Bird-Man II"
+    },
+    {
+        "id": "91",
+        "name": "Birdman"
+    },
+    {
+        "id": "92",
+        "name": "Bishop"
+    },
+    {
+        "id": "93",
+        "name": "Bizarro"
+    },
+    {
+        "id": "94",
+        "name": "Black Abbott"
+    },
+    {
+        "id": "95",
+        "name": "Black Adam"
+    },
+    {
+        "id": "96",
+        "name": "Black Bolt"
+    },
+    {
+        "id": "97",
+        "name": "Black Canary"
+    },
+    {
+        "id": "98",
+        "name": "Black Canary"
+    },
+    {
+        "id": "99",
+        "name": "Black Cat"
+    },
+    {
+        "id": "100",
+        "name": "Black Flash"
+    },
+    {
+        "id": "101",
+        "name": "Black Goliath"
+    },
+    {
+        "id": "102",
+        "name": "Black Knight III"
+    },
+    {
+        "id": "103",
+        "name": "Black Lightning"
+    },
+    {
+        "id": "104",
+        "name": "Black Mamba"
+    },
+    {
+        "id": "105",
+        "name": "Black Manta"
+    },
+    {
+        "id": "106",
+        "name": "Black Panther"
+    },
+    {
+        "id": "107",
+        "name": "Black Widow"
+    },
+    {
+        "id": "108",
+        "name": "Black Widow II"
+    },
+    {
+        "id": "109",
+        "name": "Blackout"
+    },
+    {
+        "id": "110",
+        "name": "Blackwing"
+    },
+    {
+        "id": "111",
+        "name": "Blackwulf"
+    },
+    {
+        "id": "112",
+        "name": "Blade"
+    },
+    {
+        "id": "113",
+        "name": "Blaquesmith"
+    },
+    {
+        "id": "114",
+        "name": "Bling!"
+    },
+    {
+        "id": "115",
+        "name": "Blink"
+    },
+    {
+        "id": "116",
+        "name": "Blizzard"
+    },
+    {
+        "id": "117",
+        "name": "Blizzard"
+    },
+    {
+        "id": "118",
+        "name": "Blizzard II"
+    },
+    {
+        "id": "119",
+        "name": "Blob"
+    },
+    {
+        "id": "120",
+        "name": "Bloodaxe"
+    },
+    {
+        "id": "121",
+        "name": "Bloodhawk"
+    },
+    {
+        "id": "122",
+        "name": "Bloodwraith"
+    },
+    {
+        "id": "123",
+        "name": "Blue Beetle"
+    },
+    {
+        "id": "124",
+        "name": "Blue Beetle"
+    },
+    {
+        "id": "125",
+        "name": "Blue Beetle II"
+    },
+    {
+        "id": "126",
+        "name": "Blue Beetle III"
+    },
+    {
+        "id": "127",
+        "name": "Boba Fett"
+    },
+    {
+        "id": "128",
+        "name": "Bolt"
+    },
+    {
+        "id": "129",
+        "name": "Bomb Queen"
+    },
+    {
+        "id": "130",
+        "name": "Boom-Boom"
+    },
+    {
+        "id": "131",
+        "name": "Boomer"
+    },
+    {
+        "id": "132",
+        "name": "Booster Gold"
+    },
+    {
+        "id": "133",
+        "name": "Box"
+    },
+    {
+        "id": "134",
+        "name": "Box III"
+    },
+    {
+        "id": "135",
+        "name": "Box IV"
+    },
+    {
+        "id": "136",
+        "name": "Brainiac"
+    },
+    {
+        "id": "137",
+        "name": "Brainiac 5"
+    },
+    {
+        "id": "138",
+        "name": "Brother Voodoo"
+    },
+    {
+        "id": "139",
+        "name": "Brundlefly"
+    },
+    {
+        "id": "140",
+        "name": "Buffy"
+    },
+    {
+        "id": "141",
+        "name": "Bullseye"
+    },
+    {
+        "id": "142",
+        "name": "Bumblebee"
+    },
+    {
+        "id": "143",
+        "name": "Bumbleboy"
+    },
+    {
+        "id": "144",
+        "name": "Bushido"
+    },
+    {
+        "id": "145",
+        "name": "Cable"
+    },
+    {
+        "id": "146",
+        "name": "Callisto"
+    },
+    {
+        "id": "147",
+        "name": "Cameron Hicks"
+    },
+    {
+        "id": "148",
+        "name": "Cannonball"
+    },
+    {
+        "id": "149",
+        "name": "Captain America"
+    },
+    {
+        "id": "150",
+        "name": "Captain Atom"
+    },
+    {
+        "id": "151",
+        "name": "Captain Britain"
+    },
+    {
+        "id": "152",
+        "name": "Captain Cold"
+    },
+    {
+        "id": "153",
+        "name": "Captain Epic"
+    },
+    {
+        "id": "154",
+        "name": "Captain Hindsight"
+    },
+    {
+        "id": "155",
+        "name": "Captain Mar-vell"
+    },
+    {
+        "id": "156",
+        "name": "Captain Marvel"
+    },
+    {
+        "id": "157",
+        "name": "Captain Marvel"
+    },
+    {
+        "id": "158",
+        "name": "Captain Marvel II"
+    },
+    {
+        "id": "159",
+        "name": "Captain Midnight"
+    },
+    {
+        "id": "160",
+        "name": "Captain Planet"
+    },
+    {
+        "id": "161",
+        "name": "Captain Universe"
+    },
+    {
+        "id": "162",
+        "name": "Carnage"
+    },
+    {
+        "id": "163",
+        "name": "Cat"
+    },
+    {
+        "id": "164",
+        "name": "Cat II"
+    },
+    {
+        "id": "165",
+        "name": "Catwoman"
+    },
+    {
+        "id": "166",
+        "name": "Cecilia Reyes"
+    },
+    {
+        "id": "167",
+        "name": "Century"
+    },
+    {
+        "id": "168",
+        "name": "Cerebra"
+    },
+    {
+        "id": "169",
+        "name": "Chamber"
+    },
+    {
+        "id": "170",
+        "name": "Chameleon"
+    },
+    {
+        "id": "171",
+        "name": "Changeling"
+    },
+    {
+        "id": "172",
+        "name": "Cheetah"
+    },
+    {
+        "id": "173",
+        "name": "Cheetah II"
+    },
+    {
+        "id": "174",
+        "name": "Cheetah III"
+    },
+    {
+        "id": "175",
+        "name": "Chromos"
+    },
+    {
+        "id": "176",
+        "name": "Chuck Norris"
+    },
+    {
+        "id": "177",
+        "name": "Citizen Steel"
+    },
+    {
+        "id": "178",
+        "name": "Claire Bennet"
+    },
+    {
+        "id": "179",
+        "name": "Clea"
+    },
+    {
+        "id": "180",
+        "name": "Cloak"
+    },
+    {
+        "id": "181",
+        "name": "Clock King"
+    },
+    {
+        "id": "182",
+        "name": "Cogliostro"
+    },
+    {
+        "id": "183",
+        "name": "Colin Wagner"
+    },
+    {
+        "id": "184",
+        "name": "Colossal Boy"
+    },
+    {
+        "id": "185",
+        "name": "Colossus"
+    },
+    {
+        "id": "186",
+        "name": "Copycat"
+    },
+    {
+        "id": "187",
+        "name": "Corsair"
+    },
+    {
+        "id": "188",
+        "name": "Cottonmouth"
+    },
+    {
+        "id": "189",
+        "name": "Crimson Crusader"
+    },
+    {
+        "id": "190",
+        "name": "Crimson Dynamo"
+    },
+    {
+        "id": "191",
+        "name": "Crystal"
+    },
+    {
+        "id": "192",
+        "name": "Curse"
+    },
+    {
+        "id": "193",
+        "name": "Cy-Gor"
+    },
+    {
+        "id": "194",
+        "name": "Cyborg"
+    },
+    {
+        "id": "195",
+        "name": "Cyborg Superman"
+    },
+    {
+        "id": "196",
+        "name": "Cyclops"
+    },
+    {
+        "id": "197",
+        "name": "Cypher"
+    },
+    {
+        "id": "198",
+        "name": "Dagger"
+    },
+    {
+        "id": "199",
+        "name": "Danny Cooper"
+    },
+    {
+        "id": "200",
+        "name": "Daphne Powell"
+    },
+    {
+        "id": "201",
+        "name": "Daredevil"
+    },
+    {
+        "id": "202",
+        "name": "Darkhawk"
+    },
+    {
+        "id": "203",
+        "name": "Darkman"
+    },
+    {
+        "id": "204",
+        "name": "Darkseid"
+    },
+    {
+        "id": "205",
+        "name": "Darkside"
+    },
+    {
+        "id": "206",
+        "name": "Darkstar"
+    },
+    {
+        "id": "207",
+        "name": "Darth Maul"
+    },
+    {
+        "id": "208",
+        "name": "Darth Vader"
+    },
+    {
+        "id": "209",
+        "name": "Dash"
+    },
+    {
+        "id": "210",
+        "name": "Data"
+    },
+    {
+        "id": "211",
+        "name": "Dazzler"
+    },
+    {
+        "id": "212",
+        "name": "Deadman"
+    },
+    {
+        "id": "213",
+        "name": "Deadpool"
+    },
+    {
+        "id": "214",
+        "name": "Deadshot"
+    },
+    {
+        "id": "215",
+        "name": "Deathlok"
+    },
+    {
+        "id": "216",
+        "name": "Deathstroke"
+    },
+    {
+        "id": "217",
+        "name": "Demogoblin"
+    },
+    {
+        "id": "218",
+        "name": "Destroyer"
+    },
+    {
+        "id": "219",
+        "name": "Diamondback"
+    },
+    {
+        "id": "220",
+        "name": "DL Hawkins"
+    },
+    {
+        "id": "221",
+        "name": "Doc Samson"
+    },
+    {
+        "id": "222",
+        "name": "Doctor Doom"
+    },
+    {
+        "id": "223",
+        "name": "Doctor Doom II"
+    },
+    {
+        "id": "224",
+        "name": "Doctor Fate"
+    },
+    {
+        "id": "225",
+        "name": "Doctor Octopus"
+    },
+    {
+        "id": "226",
+        "name": "Doctor Strange"
+    },
+    {
+        "id": "227",
+        "name": "Domino"
+    },
+    {
+        "id": "228",
+        "name": "Donatello"
+    },
+    {
+        "id": "229",
+        "name": "Donna Troy"
+    },
+    {
+        "id": "230",
+        "name": "Doomsday"
+    },
+    {
+        "id": "231",
+        "name": "Doppelganger"
+    },
+    {
+        "id": "232",
+        "name": "Dormammu"
+    },
+    {
+        "id": "233",
+        "name": "Dr Manhattan"
+    },
+    {
+        "id": "234",
+        "name": "Drax the Destroyer"
+    },
+    {
+        "id": "235",
+        "name": "Ego"
+    },
+    {
+        "id": "236",
+        "name": "Elastigirl"
+    },
+    {
+        "id": "237",
+        "name": "Electro"
+    },
+    {
+        "id": "238",
+        "name": "Elektra"
+    },
+    {
+        "id": "239",
+        "name": "Elle Bishop"
+    },
+    {
+        "id": "240",
+        "name": "Elongated Man"
+    },
+    {
+        "id": "241",
+        "name": "Emma Frost"
+    },
+    {
+        "id": "242",
+        "name": "Enchantress"
+    },
+    {
+        "id": "243",
+        "name": "Energy"
+    },
+    {
+        "id": "244",
+        "name": "ERG-1"
+    }
+]
