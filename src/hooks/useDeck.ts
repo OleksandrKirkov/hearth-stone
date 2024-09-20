@@ -1,9 +1,10 @@
+import { CHARACTER_COUNT } from "@/contstants/api"
 import { DECK_LENGTH } from "@/contstants/game"
 import { getCharacter } from "@/services/Api"
 import { CharacterType } from "@/types/character.type"
 
 const getRandomId = () => {
-    return Math.floor(Math.random() * DECK_LENGTH) + 1 
+    return Math.floor(Math.random() * CHARACTER_COUNT) + 1
 }
 
 const useDeck = () => {
