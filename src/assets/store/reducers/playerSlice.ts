@@ -17,11 +17,11 @@ const playerSlice = createSlice({
             return action.payload
         },
 
-        updateMana(state) {
+        updatePlayerMana(state) {
             state.mana += 1
         },
     }
 })
 
-export const { initialPlayer, updateMana } = playerSlice.actions
+export const { initialPlayer, updatePlayerMana } = playerSlice.actions
 export default playerSlice.reducer

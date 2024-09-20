@@ -17,11 +17,11 @@ const enemySlice = createSlice({
             return action.payload
         },
 
-        updateMana(state) {
+        updateEnemyMana(state) {
             state.mana += 1
         },
     }
 })
 
-export const { initialEnemy, updateMana } = enemySlice.actions
+export const { initialEnemy, updateEnemyMana } = enemySlice.actions
 export default enemySlice.reducer
