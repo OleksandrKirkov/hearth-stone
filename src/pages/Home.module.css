@@ -1,0 +1,15 @@
+.wrapper {
+    @apply h-[100vh] w-full;
+}
+
+.section {
+    @apply h-1/2 w-full flex items-start justify-between;
+}
+
+.section:nth-child(2) {
+    @apply flex-row-reverse items-end;
+}
+
+.deck {
+    @apply flex items-center;
+}
