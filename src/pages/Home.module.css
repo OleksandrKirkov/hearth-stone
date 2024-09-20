@@ -2,6 +2,14 @@
     @apply h-[100vh] w-full;
 }
 
+.game_data {
+    @apply absolute top-1/2 right-0 -translate-y-1/2; 
+}
+
+.value {
+    @apply text-white text-3xl
+}
+
 .section {
     @apply h-1/2 w-full flex items-start justify-between;
 }

@@ -13,6 +13,7 @@ import { initialEnemy } from "@/assets/store/reducers/enemySlice"
 const Main: NextPageWithLayout = () => {
     const player = useSelector((state: RootState) => state.player)
     const enemy = useSelector((state: RootState) => state.enemy)
+    const game = useSelector((state: RootState) => state.game)
 
     const dispatch = useDispatch()
     const { getDeck } = useDeck()
@@ -26,7 +27,7 @@ const Main: NextPageWithLayout = () => {
                 name: 'Oleksandr',
                 hero: 'Hero',
                 deck: deck,
-                mana: 0
+                mana: 1
             }
 
             dispatch(initialPlayer(playerData))
@@ -40,7 +41,7 @@ const Main: NextPageWithLayout = () => {
                 name: 'Enemy',
                 hero: 'Hero',
                 deck: deck,
-                mana: 0
+                mana: 1
             }
 
             dispatch(initialEnemy(enemyData))
@@ -70,6 +71,9 @@ const Main: NextPageWithLayout = () => {
                 ))}
             </div>
             <div className={styles.hero}>3</div>
+        </div>
+        <div className={styles.game_data}>
+            <p className={styles.value}>Current Turn: {game.currentTurn}</p>
         </div>
     </div>
 }
