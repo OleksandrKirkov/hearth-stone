@@ -15,6 +15,8 @@ const useDeck = () => {
 
             character.data && cards.push(character.data)
         }
+
+        return cards
     }
 
     const updateDeck = async (deck: CharacterType[]) => {
