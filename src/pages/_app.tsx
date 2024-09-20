@@ -3,6 +3,8 @@ import "@/styles/global.css"
 import App, { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 import { ReactElement, ReactNode } from "react";
+import { Provider } from "react-redux";
+import { store } from "@/assets/store/store";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode;
@@ -20,7 +22,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             <Head>
                 <title>{Component.title}</title>
             </Head>
-            <Component {...pageProps} />
+            <Provider store={store}>
+                <Component {...pageProps} />
+            </Provider>
         </>
     )
 }
