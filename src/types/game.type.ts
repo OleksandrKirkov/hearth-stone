@@ -1,4 +1,4 @@
 export type GameType = {
     status: 'active' | 'paused' | 'finished'
-    currentTurn: number
+    currentTurn: 'player' | 'enemy'
 }

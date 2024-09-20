@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: GameType = {
     status: 'paused',
-    currentTurn: 0
+    currentTurn: 'player'
 }
 
 const gameSlice = createSlice({
@@ -12,7 +12,6 @@ const gameSlice = createSlice({
     reducers: {
         startGame(state) {
             state.status = 'active';
-            state.currentTurn = 1
         },
 
         pausedGame(state) {
