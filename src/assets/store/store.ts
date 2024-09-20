@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import gameReducer from "@/assets/store/reducers/gameSlice"
 
 export const store = configureStore({
     reducer: {
-        
+        game: gameReducer,
     },
 
     middleware: (getDefaultMiddleware) =>
