@@ -1,10 +1,10 @@
 import { NextPage } from "next";
 import "@/styles/global.css"
-import { AppProps } from "next/app";
+import App, { AppContext, AppProps } from "next/app";
 import Head from "next/head";
 import { ReactElement, ReactNode } from "react";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode;
 } & { title: string }
 
@@ -25,10 +25,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     )
 }
 
-MyApp.getInitialProps = async (context: any) => {
+MyApp.getInitialProps = async (appContext: AppContext) => {
+    const appProps = await App.getInitialProps(appContext)
+
     return {
         pageProps: {
-            ...context.pageProps,
+            ...appProps.pageProps,
         }
     }
 }
