@@ -1,6 +1,7 @@
 import { CHARACTER_COUNT } from "@/contstants/api"
 import { DECK_LENGTH } from "@/contstants/game"
 import { getCharacter } from "@/services/Api"
+import { CARD_CLASS, CardType } from "@/types/card.type"
 import { CharacterType } from "@/types/character.type"
 
 const getRandomId = () => {
@@ -8,13 +9,23 @@ const getRandomId = () => {
 }
 
 const useDeck = () => {
-    const getDeck = async () => {
-        const cards: CharacterType[] = []
+    const getDeck = async (): Promise<CardType[]> => {
+        const cards: CardType[] = []
 
         for(let i = 1; i <= DECK_LENGTH; i++ ) {
             const character = await getCharacter(String(getRandomId()))
 
-            character.data && cards.push(character.data)
+            character.data && cards.push({
+                id: Number(character.data.id),
+                data: character.data,
+                class: CARD_CLASS.rush,
+                health: 6,
+                attack: 3,
+                attackPerTurn: 3,
+                isAttack: false,
+                isDeck: true,
+                mana: 3
+            })
         }
 
         return cards
