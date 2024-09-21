@@ -1,16 +1,25 @@
 import { CharacterType } from "./character.type"
 
-enum CARD_CLASS {
+export enum CARD_CLASS {
     'taunt',
     'charge',
     'rush'
 }
 
 export type CardType = {
+    id: number
     data: CharacterType
     class: CARD_CLASS,
     health: number,
     attack: number,
     attackPerTurn: number,
-    isDeck: boolean
+    isAttack: boolean,
+    isDeck: boolean,
+    mana: number
+}
+
+export type UpdateCardType = {
+    health: number
+    attackPerTurn: number
+    isAttack: boolean
 }
