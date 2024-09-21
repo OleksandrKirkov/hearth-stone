@@ -1,5 +1,6 @@
 import { PlayerType } from "@/types/player.type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const initialState: PlayerType = {
     id: 0,
@@ -8,6 +9,8 @@ const initialState: PlayerType = {
     deck: [],
     hero: '',
 }
+
+export const selectEnemy = (state: RootState) => state.enemy
 
 const enemySlice = createSlice({
     name: 'enemy',
