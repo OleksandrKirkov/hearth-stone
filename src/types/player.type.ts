@@ -1,9 +1,9 @@
-import { CharacterType } from "./character.type"
+import { CardType } from "./card.type"
 
 export type PlayerType = {
     id: number
     name: string
     mana: number
-    deck: CharacterType[]
+    deck: CardType[]
     hero: string
 }
