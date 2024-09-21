@@ -12,7 +12,7 @@ const useDeck = () => {
     const getDeck = async (): Promise<CardType[]> => {
         const cards: CardType[] = []
 
-        for(let i = 1; i <= DECK_LENGTH; i++ ) {
+        for (let i = 1; i <= DECK_LENGTH; i++) {
             const character = await getCharacter(String(getRandomId()))
 
             character.data && cards.push({
@@ -31,12 +31,24 @@ const useDeck = () => {
         return cards
     }
 
-    const updateDeck = async (deck: CharacterType[]) => {
-        if(deck.length >= DECK_LENGTH) return
+    const updateDeck = async (deck: CardType[]): Promise<CardType[]> => {
+        if (deck.length >= DECK_LENGTH) return deck
 
         const character = await getCharacter(String(getRandomId))
 
-        return [...deck, character.data]
+        if (character.data) {
+            return [...deck, {
+                id: Number(character.data?.id),
+                data: character.data,
+                class: CARD_CLASS.rush,
+                health: 6,
+                attack: 3,
+                attackPerTurn: 3,
+                isAttack: false,
+                isDeck: true,
+                mana: 3
+            }]
+        } else return deck
     }
 
     return { getDeck, updateDeck }
