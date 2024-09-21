@@ -18,7 +18,8 @@ const gameSlice = createSlice({
         },
 
         pausedGame(state) {
-            state.status = GAME_STATUS.paused;
+            const isPaused = state.status === GAME_STATUS.paused
+            state.status = isPaused ? GAME_STATUS.active : GAME_STATUS.paused;
         },
 
         finishedGame(state) {
