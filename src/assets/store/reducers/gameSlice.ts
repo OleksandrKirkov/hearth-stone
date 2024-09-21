@@ -1,9 +1,9 @@
-import { GameType } from "@/types/game.type";
+import { GAME_STATUS, GameType, TURN_STATUS } from "@/types/game.type";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: GameType = {
-    status: 'paused',
-    currentTurn: 'player'
+    status: GAME_STATUS.paused,
+    currentTurn: TURN_STATUS.player
 }
 
 const gameSlice = createSlice({
@@ -11,15 +11,15 @@ const gameSlice = createSlice({
     initialState,
     reducers: {
         startGame(state) {
-            state.status = 'active';
+            state.status = GAME_STATUS.active;
         },
 
         pausedGame(state) {
-            state.status = 'paused';
+            state.status = GAME_STATUS.paused;
         },
 
         finishedGame(state) {
-            state.status = 'finished';
+            state.status = GAME_STATUS.finished;
         },
 
         nextTurn(state) {
