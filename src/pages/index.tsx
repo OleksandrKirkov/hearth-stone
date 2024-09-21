@@ -16,6 +16,7 @@ const Main: NextPageWithLayout = () => {
     const game = useSelector((state: RootState) => state.game)
 
     const dispatch = useDispatch()
+
     const { getDeck } = useDeck()
 
     useEffect(() => {
@@ -58,7 +59,7 @@ const Main: NextPageWithLayout = () => {
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {enemy.deck.map((card, index) => (
-                    <Cart key={index} data={card} />
+                    <Cart key={index} card={card} />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
@@ -67,7 +68,7 @@ const Main: NextPageWithLayout = () => {
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {player.deck.map((card, index) => (
-                    <Cart key={index} data={card} />
+                    <Cart key={index} card={card} />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
