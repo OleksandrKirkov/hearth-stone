@@ -8,8 +8,12 @@ export interface IAttack {
     targetCardId: number
 }
 
-export function getCardById(cardId: number, deck: CardType[]) {
+function getCardById(cardId: number, deck: CardType[]) {
     return deck.find((card) => card.id === cardId)
+}
+
+function deleteCardById(cardId: number, deck: CardType[]) {
+    return deck.filter((card) => card.id !== cardId)
 }
 
 export function attackCard(state: RootState, data: IAttack) {
@@ -32,16 +36,21 @@ export function attackCard(state: RootState, data: IAttack) {
         attackerCard.isAttack = false
         attackerCard.attackPerTurn -= 1
 
-        if(targetCard.health <= 0) {
-            if(isAttackPlayer) {
-                state.enemy.deck = state.enemy.deck.filter(
-                    (card) => card.id !== targetCardId
-                )
+        if (targetCard.health <= 0) {
+            if (isAttackPlayer) {
+                state.enemy.deck = deleteCardById(targetCardId, state.enemy.deck)
             } else {
-                state.player.deck = state.enemy.deck.filter(
-                    (card) => card.id !== targetCardId
-                )
+                state.player.deck = deleteCardById(targetCardId, state.player.deck)
             }
-       }
+        }
+
+        if (attackerCard.attackPerTurn <= 0) {
+            if (isAttackPlayer) {
+                state.player.deck = deleteCardById(attackCardId, state.player.deck)
+            } else {
+                state.enemy.deck = deleteCardById(attackCardId, state.enemy.deck)
+            }
+        }
+
     }
 }
