@@ -13,8 +13,8 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        startGame(state) {
-            state.status = GAME_STATUS.active;
+        startAction(state) {
+            state.status = GAME_STATUS.active
         },
 
         pausedGame(state) {
@@ -33,8 +33,8 @@ const gameSlice = createSlice({
         attackAction(state, action: PayloadAction<{data: IAttack}>) {
             attackCard(state as unknown as RootState, action.payload.data)
         }
-    }    
+    },
 })
 
-export const { startGame, pausedGame, finishedGame, turnAction, attackAction } = gameSlice.actions
+export const { startAction, pausedGame, finishedGame, turnAction, attackAction } = gameSlice.actions
 export default gameSlice.reducer
