@@ -1,65 +1,30 @@
 import Cart from "@/components/card/Card"
 import { NextPageWithLayout } from "./_app"
 import styles from './Home.module.css'
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import useDeck from "@/hooks/useDeck"
-import { PlayerType } from "@/types/player.type"
-import { initialPlayer } from "@/assets/store/reducers/playerSlice"
-import { startGame } from "@/assets/store/reducers/gameSlice"
+import { useSelector } from "react-redux"
 import { RootState } from "@/assets/store/store"
-import { initialEnemy } from "@/assets/store/reducers/enemySlice"
+import { GAME_STATUS } from "@/types/game.type"
+import useGame from "@/hooks/useGame"
 
 const Main: NextPageWithLayout = () => {
     const player = useSelector((state: RootState) => state.player)
     const enemy = useSelector((state: RootState) => state.enemy)
     const game = useSelector((state: RootState) => state.game)
 
-    const dispatch = useDispatch()
+    const { startGame } = useGame()
 
-    const { getDeck } = useDeck()
+    const gameStatus = game.status === GAME_STATUS.active
 
-    useEffect(() => {
-        const fetchPlayerDeck = async () => {
-            const deck = await getDeck()
+    const onStartHandler = async () => {
+        await startGame()
+    }
 
-            const playerData: PlayerType = {
-                id: 0,
-                name: 'Oleksandr',
-                hero: 'Hero',
-                deck: deck,
-                mana: 1
-            }
-
-            dispatch(initialPlayer(playerData))
-        }
-
-        const fetchEnemyDeck = async () => {
-            const deck = await getDeck()
-
-            const enemyData: PlayerType = {
-                id: 1,
-                name: 'Enemy',
-                hero: 'Hero',
-                deck: deck,
-                mana: 1
-            }
-
-            dispatch(initialEnemy(enemyData))
-        }
-
-        fetchPlayerDeck();
-        fetchEnemyDeck();
-
-        dispatch(startGame())
-    }, [])
-
-    return <div className={styles.wrapper}>
+    return <>{gameStatus ? <div className={styles.wrapper}>
         <div className={styles.section}>
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {enemy.deck.map((card, index) => (
-                    <Cart key={index} card={card} />
+                    <Cart key={index} card={card} enemy={true} />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
@@ -68,7 +33,7 @@ const Main: NextPageWithLayout = () => {
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {player.deck.map((card, index) => (
-                    <Cart key={index} card={card} />
+                    <Cart key={index} card={card} enemy={false} />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
@@ -76,7 +41,7 @@ const Main: NextPageWithLayout = () => {
         <div className={styles.game_data}>
             <p className={styles.value}>Current Turn: {game.currentTurn}</p>
         </div>
-    </div>
+    </div> : <div><button className={styles.button} onClick={onStartHandler}>Start</button></div>}</>
 }
 
 Main.title = "HearthStone"
