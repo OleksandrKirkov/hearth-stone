@@ -1,6 +1,5 @@
 import { GAME_STATUS, GameType, TURN_STATUS } from "@/types/game.type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { attackCard, IAttack } from "./actions/attackCard";
 import { RootState } from "../store";
 
 const initialState: GameType = {
@@ -25,10 +24,6 @@ const gameSlice = createSlice({
             state.status = GAME_STATUS.finished;
         },
 
-        attackAction(state, action: PayloadAction<{data: IAttack}>) {
-            attackCard(state as unknown as RootState, action.payload.data)
-        },
-
         nextTurn(state, action: PayloadAction<{turn: TURN_STATUS}>) {
             state.currentTurn = action.payload.turn
         }
@@ -39,7 +34,6 @@ export const {
     startGame, 
     pausedGame, 
     finishedGame, 
-    attackAction,
     nextTurn
 } = gameSlice.actions
 export default gameSlice.reducer
