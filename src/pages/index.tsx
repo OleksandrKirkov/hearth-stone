@@ -19,18 +19,20 @@ const Main: NextPageWithLayout = () => {
         await startGame()
     }
 
+    const onClickHandler = () => {}
+
     return <>{gameStatus ? <div className={styles.wrapper}>
         <div className={styles.section}>
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {enemy.deck.map((card, index) => (
-                    <Cart key={index} card={card} enemy={true} />
+                    <Cart onClick={onClickHandler} key={index} card={card} />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
         </div>
         <div className={styles.section}>
-            <div className={styles.mana}>{enemy.mana}</div>
+            <div className={styles.mana}>{player.mana}</div>
             <div className={styles.deck}>
                 {player.deck.map((card, index) => (
                     <Cart key={index} card={card} enemy={false} />
