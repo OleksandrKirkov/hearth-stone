@@ -3,15 +3,19 @@ import { NextPageWithLayout } from "./_app"
 import styles from './Home.module.css'
 import { useSelector } from "react-redux"
 import { RootState } from "@/assets/store/store"
-import { GAME_STATUS } from "@/types/game.type"
+import { GAME_STATUS, TURN_STATUS } from "@/types/game.type"
 import useGame from "@/hooks/useGame"
+import { useState } from "react"
+import { updatePlayerDeck } from "@/assets/store/reducers/playerSlice"
 
 const Main: NextPageWithLayout = () => {
     const player = useSelector((state: RootState) => state.player)
     const enemy = useSelector((state: RootState) => state.enemy)
     const game = useSelector((state: RootState) => state.game)
 
-    const { startGame } = useGame()
+    const { startGame, attackCard } = useGame()
+
+    const [attackCardId, setAttackCardId] = useState<number | null>()
 
     const gameStatus = game.status === GAME_STATUS.active
 
@@ -19,14 +23,32 @@ const Main: NextPageWithLayout = () => {
         await startGame()
     }
 
-    const onClickHandler = () => {}
+    const onAttckerHandler = (id: number) => {
+        if (game.currentTurn !== TURN_STATUS.player) return
+
+        setAttackCardId(id)
+        updatePlayerDeck({deck: player.deck.map(card => {
+            if (card.id === id) card.isDeck = false
+            return card
+        })})
+    }
+
+    const onTargetHandler = (id: number) => {
+        if (game.currentTurn !== TURN_STATUS.player) return
+
+        attackCardId && attackCard(attackCardId, id)
+    }
 
     return <>{gameStatus ? <div className={styles.wrapper}>
         <div className={styles.section}>
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {enemy.deck.map((card, index) => (
-                    <Cart onClick={onClickHandler} key={index} card={card} />
+                    <Cart 
+                        onClick={() => onTargetHandler(card.id)} 
+                        key={index} 
+                        card={card}
+                    />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
@@ -34,8 +56,13 @@ const Main: NextPageWithLayout = () => {
         <div className={styles.section}>
             <div className={styles.mana}>{player.mana}</div>
             <div className={styles.deck}>
-                {player.deck.map((card, index) => (
-                    <Cart key={index} card={card} enemy={false} />
+                {player.deck.filter((card) => card.isDeck === true).map((card, index) => (
+                    <Cart
+                        onClick={() => onAttckerHandler(card.id)}
+                        key={index}
+                        card={card}
+                        enemy={false}
+                    />
                 ))}
             </div>
             <div className={styles.hero}>3</div>
