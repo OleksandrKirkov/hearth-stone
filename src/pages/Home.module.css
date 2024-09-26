@@ -14,16 +14,25 @@
     @apply h-1/2 w-full flex items-start justify-between;
 }
 
+.section:nth-child(3) {
+    @apply items-end
+}
+
 .section:nth-child(2) {
     @apply flex-row-reverse items-end;
 }
 
-.deck {
-    @apply flex items-center;
+.player_game {
+    @apply flex justify-between gap-12;
 }
 
-.mana {
-    @apply text-white flex items-center justify-center text-3xl
+.mana,
+.health {
+    @apply w-1/5
+}
+
+.deck {
+    @apply flex items-center;
 }
 
 .button {

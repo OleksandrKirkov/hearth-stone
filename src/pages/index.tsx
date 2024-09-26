@@ -42,9 +42,9 @@ const Main: NextPageWithLayout = () => {
             <div className={styles.mana}>{enemy.mana}</div>
             <div className={styles.deck}>
                 {enemy.deck.map((card, index) => (
-                    <Cart 
-                        onClick={() => onTargetHandler(card.id)} 
-                        key={index} 
+                    <Cart
+                        onClick={() => onTargetHandler(card.id)}
+                        key={index}
                         card={card}
                     />
                 ))}
@@ -54,7 +54,7 @@ const Main: NextPageWithLayout = () => {
         <div>
             <div className={styles.deck}>
                 {player.deck.filter((card) => card.isDeck === false).map((card, index) => (
-                    <Card 
+                    <Card
                         key={index}
                         card={card}
                         enemy={false}
@@ -63,18 +63,24 @@ const Main: NextPageWithLayout = () => {
             </div>
         </div>
         <div className={styles.section}>
-            <div className={styles.mana}>{player.mana}</div>
-            <div className={styles.deck}>
-                {player.deck.filter((card) => card.isDeck === true).map((card, index) => (
-                    <Cart
-                        onClick={() => onAttckerHandler(card.id)}
-                        key={index}
-                        card={card}
-                        enemy={false}
-                    />
-                ))}
+            <div className={styles.player_game}>
+                <div className={styles.health}>
+                    <img src="/health.png" alt="health" />
+                </div>
+                <div className={styles.deck}>
+                    {player.deck.filter((card) => card.isDeck === true).map((card, index) => (
+                        <Cart
+                            onClick={() => onAttckerHandler(card.id)}
+                            key={index}
+                            card={card}
+                            enemy={false}
+                        />
+                    ))}
+                </div>
+                <div className={styles.mana}>
+                    <img src="/mana.png" alt="mana" />
+                </div>
             </div>
-            <div className={styles.hero}>3</div>
         </div>
         <div className={styles.game_data}>
             <p className={styles.value}>Current Turn: {game.currentTurn}</p>
