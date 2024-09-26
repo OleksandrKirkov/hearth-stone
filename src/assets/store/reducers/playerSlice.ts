@@ -2,6 +2,7 @@ import { PlayerType } from "@/types/player.type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { CardType } from "@/types/card.type";
+import { playCard as playAction } from "./actions/playCard";
 
 const initialState: PlayerType = {
     id: 0,
@@ -31,6 +32,10 @@ const playerSlice = createSlice({
 
         setCurrentTurn(state) {
             state.mana += 1
+        },
+
+        playCard(state, action: PayloadAction<{cardId: number}>) {
+            playAction(state, action.payload.cardId)
         }
     }
 })
@@ -39,5 +44,6 @@ export const {
     initialPlayer,
     updatePlayerMana,
     updatePlayerDeck,
+    playCard,
 } = playerSlice.actions
 export default playerSlice.reducer

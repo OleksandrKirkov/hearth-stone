@@ -1,9 +1,14 @@
-import { initialPlayer } from "@/assets/store/reducers/playerSlice"
+import { 
+    initialPlayer, 
+    playCard as playCardReducer 
+} from "@/assets/store/reducers/playerSlice"
 import { PLAYER_NAME, START_MANA } from "@/contstants/game"
 import { useDispatch } from "react-redux"
 import useDeck from "./useDeck"
 import { initialEnemy } from "@/assets/store/reducers/enemySlice"
-import { startGame as startGameReducer } from "@/assets/store/reducers/gameSlice"
+import { 
+    startGame as startGameReducer, 
+} from "@/assets/store/reducers/gameSlice"
 import nextTurn from "@/hooks/actions/useGame/nextTurn"
 import attackCard from "@/hooks/actions/useGame/attackCard"
 
@@ -31,7 +36,11 @@ const useGame = () => {
         dispatch(startGameReducer())
     }
 
-    return { startGame, nextTurn, attackCard }
+    const playCard = (id: number) => {
+        dispatch(playCardReducer({cardId: id}))
+    }
+
+    return { startGame, nextTurn, attackCard, playCard }
 }
 
 export default useGame
