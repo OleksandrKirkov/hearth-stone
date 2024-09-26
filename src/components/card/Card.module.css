@@ -1,11 +1,37 @@
 .card {
-    @apply bg-[url("/cart.png")] bg-no-repeat bg-center bg-contain
-        relative flex items-center justify-center px-[10%] py-[10%]
-        w-full;
+    @apply relative w-[260px] h-[360px] overflow-hidden -mx-6;
+}
+
+.card::after {
+    @apply absolute bg-[url("/card.png")] bg-no-repeat bg-center bg-contain
+        w-full h-full top-0 left-0;
+    content: '';
 }
 
 .wrapper {
-    @apply bg-red-400 bg-opacity-40 flex flex-col;
+    @apply py-6 relative h-full px-6
+}
+
+.mana {
+    @apply absolute text-center text-black text-3xl z-10 top-[7%] left-[11%] w-[32px] 
+        font-bold;
+}
+
+.name {
+    @apply absolute text-center text-white text-lg z-10 top-[9%] w-full left-0;
+}
+
+.class {
+    @apply absolute text-center text-white text-sm z-10 top-[14%] w-full left-0;
+}
+
+.attack {
+    @apply w-full flex items-center justify-between top-[54%] z-10 absolute
+        px-[36px] left-0
+}
+
+.value {
+    @apply font-bold text-white text-3xl
 }
 
 .image {
@@ -14,5 +40,5 @@
 }
 
 .image img{
-    @apply max-w-[180px]
+    @apply max-w-[180px] object-center
 }
