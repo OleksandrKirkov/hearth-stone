@@ -23,7 +23,7 @@ const useDeck = () => {
                 attackPerTurn: 3,
                 isAttack: false,
                 isDeck: true,
-                mana: 3
+                mana: 1
             })
         }
 
