@@ -1,0 +1,20 @@
+.player {
+    @apply h-[50vh] w-full
+}
+
+.table {
+    @apply h-1/2 flex justify-center
+}
+
+.interface {
+    @apply h-1/2 flex justify-between
+}
+
+.health,
+.mana {
+    @apply relative w-1/5 h-full z-10
+}
+
+.deck {
+    @apply flex justify-center w-full absolute left-0 bottom-0 translate-y-1/3
+}
