@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-    @apply w-[100vw] h-[100vh] bg-[url('/background.jpeg')] bg-no-repeat bg-center bg-cover;
+    @apply w-[100vw] h-[100vh] bg-[url('/background.jpeg')] bg-no-repeat bg-center 
+        bg-cover overflow-hidden;
 }
 
 .main {
