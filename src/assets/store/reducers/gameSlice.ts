@@ -1,6 +1,5 @@
 import { GAME_STATUS, GameType, TURN_STATUS } from "@/types/game.type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 
 const initialState: GameType = {
     status: GAME_STATUS.paused,
@@ -11,7 +10,7 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        startGame(state) {
+        startAction(state) {
             state.status = GAME_STATUS.active
         },
 
@@ -31,7 +30,7 @@ const gameSlice = createSlice({
 })
 
 export const { 
-    startGame, 
+    startAction, 
     pausedGame, 
     finishedGame, 
     nextTurn
