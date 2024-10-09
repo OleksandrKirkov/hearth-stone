@@ -9,7 +9,7 @@ export function playCard(state: PlayerType, cardId: number) {
     const currentCard = getCardById(cardId, state.deck)
 
     if(currentCard && currentCard.mana <= state.mana) {
-        state.mana - currentCard.mana
+        state.mana -= currentCard.mana
 
         currentCard.isDeck = false
 
