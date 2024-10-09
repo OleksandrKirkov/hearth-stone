@@ -1,12 +1,19 @@
-import { RootState } from "@/assets/store/store"
 import useDeck from "@/hooks/useDeck"
-import { TURN_STATUS } from "@/types/game.type"
+import { GameType, TURN_STATUS } from "@/types/game.type"
 import { nextTurn as nextTurnReducer } from "@/assets/store/reducers/gameSlice"
 import { DECK_LENGTH } from "@/contstants/game"
 import { updateEnemyDeck, updateEnemyMana } from "@/assets/store/reducers/enemySlice"
 import { CardType } from "@/types/card.type"
 import { updatePlayerDeck, updatePlayerMana } from "@/assets/store/reducers/playerSlice"
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux"
+import { PlayerType } from "@/types/player.type"
+import { Dispatch } from "@reduxjs/toolkit"
+
+interface INextTurn {
+    player: PlayerType
+    enemy: PlayerType
+    game: GameType
+    dispatch: Dispatch
+}
 
 const setIsAttack = (card: CardType): CardType => {
     !card.isDeck && (card.isAttack = true)
@@ -14,18 +21,10 @@ const setIsAttack = (card: CardType): CardType => {
     return card
 }
 
-const nextTurn = async () => {
-    const { player, enemy, game } = useAppSelector((state: RootState) => ({
-        player: state.player,
-        enemy: state.enemy,
-        game: state.game
-    }))
-
-    const dispatch = useAppDispatch()
-
+const nextTurn = async ({player, enemy, game, dispatch}: INextTurn) => {
     const { updateDeck } = useDeck()
 
-    const isPlayerTurn = game.currentTurn
+    const isPlayerTurn = game.currentTurn === TURN_STATUS.player
 
     if (isPlayerTurn) {
         dispatch(nextTurnReducer({ turn: TURN_STATUS.enemy }))
