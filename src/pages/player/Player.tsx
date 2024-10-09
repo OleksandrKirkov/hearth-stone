@@ -15,7 +15,7 @@ const Player: FC = () => {
 
     const [attackCardId, setAttackCardId] = useState<number | null>()
 
-    const { startGame, attackCard, playCard } = useGame()
+    const { attackCard, playCard } = useGame()
 
     const onAttckerHandler = (id: number) => {
         if (game.currentTurn !== TURN_STATUS.player) return
@@ -39,6 +39,7 @@ const Player: FC = () => {
             <div className={styles.interface}>
                 <div className={styles.health}>
                     <Image src="/health.png" alt="health" objectFit="contain" fill={true} />
+                    <p></p>
                 </div>
                 <div className={styles.deck}>
                     {player.deck.filter((card) => card.isDeck == true).map((card, index) => (
@@ -52,6 +53,7 @@ const Player: FC = () => {
                 </div>
                 <div className={styles.mana}>
                     <Image src="/mana.png" alt="mana" objectFit="contain" fill={true} />
+                    <p className={styles.value}>{ player.mana }</p>
                 </div>
             </div>
         </div>

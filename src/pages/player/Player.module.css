@@ -15,6 +15,11 @@
     @apply relative w-1/5 h-full z-10
 }
 
+.value {
+    @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-6xl
+        text-white
+}
+
 .deck {
     @apply flex justify-center w-full absolute left-0 bottom-0 translate-y-1/3
 }
