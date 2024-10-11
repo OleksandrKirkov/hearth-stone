@@ -21,7 +21,7 @@ const setIsAttack = (card: CardType): CardType => {
     return card
 }
 
-const nextTurn = async ({player, enemy, game, dispatch}: INextTurn) => {
+const nextTurn = async ({ player, enemy, game, dispatch }: INextTurn) => {
     const { updateDeck } = useDeck()
 
     const isPlayerTurn = game.currentTurn === TURN_STATUS.player
@@ -29,25 +29,21 @@ const nextTurn = async ({player, enemy, game, dispatch}: INextTurn) => {
     if (isPlayerTurn) {
         dispatch(nextTurnReducer({ turn: TURN_STATUS.enemy }))
 
-        if (enemy.deck.length < DECK_LENGTH) {
-            const deck = await updateDeck(
-                enemy.deck.map(card => setIsAttack(card))
-            )
+        //const deck = await updateDeck(
+            //enemy.deck.filter(card => card.isDeck === true)
+        //)
 
-            dispatch(updateEnemyDeck({ deck }))
-        }
+        //dispatch(updateEnemyDeck({ deck }))
 
         dispatch(updateEnemyMana())
     } else {
         dispatch(nextTurnReducer({ turn: TURN_STATUS.player }))
 
-        if (player.deck.length < DECK_LENGTH) {
-            const deck = await updateDeck(
-                enemy.deck.map(card => setIsAttack(card))
-            )
+        //const deck = await updateDeck(
+            //player.deck.filter(card => card.isDeck === true)
+        //)
 
-            dispatch(updatePlayerDeck({ deck }))
-        }
+        //dispatch(updatePlayerDeck({ deck }))
 
         dispatch(updatePlayerMana())
     }

@@ -15,7 +15,9 @@ const playCard = ({ enemy, dispatch }: IPlayCard) => {
 
     const resultPlayCard = playingCards[Math.floor(Math.random() * playingCards.length)]
 
-    dispatch(playCardAction({cardId: resultPlayCard.id})) 
+    dispatch(playCardAction({cardId: resultPlayCard.id}))
+
+    
 }
 
 export default playCard
