@@ -10,7 +10,7 @@ import Opponent from "./opponent/Opponent"
 const Main: NextPageWithLayout = () => {
     const game = useSelector((state: RootState) => state.game)
 
-    const { startGame, attackCard, playCard, nextTurn } = useGame()
+    const { startGame, nextTurn } = useGame()
 
     const gameStatus = game.status === GAME_STATUS.active
 
