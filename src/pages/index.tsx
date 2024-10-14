@@ -25,7 +25,7 @@ const Main: NextPageWithLayout = () => {
             <p className={styles.value}>Current Turn: {TURN_STATUS[game.currentTurn]}</p>
             <button onClick={nextTurn}>Next turn</button>
         </div>
-    </div> : <div><button className={styles.button} onClick={onStartHandler}>Start</button></div>}</>
+    </div> : <div><button className={styles.button} onClick={onStartHandler}>Start Game</button></div>}</>
 }
 
 Main.title = "HearthStone"
