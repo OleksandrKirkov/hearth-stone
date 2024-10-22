@@ -1,58 +1,103 @@
-import { FC, useEffect, useState } from "react";
-import styles from "./Opponent.module.css"
-import Card from "@/components/card/Card";
-import { useAppSelector } from "@/hooks/useRedux";
-import { RootState } from "@/assets/store/store";
-import { TURN_STATUS } from "@/types/game.type";
-import useGame from "@/hooks/useGame";
-import useEnemy from "@/hooks/useEnemy";
+import { RootState } from '@/assets/store/store'
+import Card from '@/components/card/Card'
+import useEnemy from '@/hooks/useEnemy'
+import useGame from '@/hooks/useGame'
+import { useAppSelector } from '@/hooks/useRedux'
+import { TURN_STATUS } from '@/types/game.type'
+import { CSSProperties, FC, useEffect } from 'react'
+import styles from './Opponent.module.css'
 
+interface IOpponent {
+	setAttackerCardId: (id: number) => void
+	setAttachCardId: (id: number) => void
+	attackerCardId: number | null
+}
 
-const Opponent: FC = () => {
-    const enemy = useAppSelector((state: RootState) => state.enemy)
-    const game = useAppSelector((state: RootState) => state.game)
+const getStyleRotation = (
+	index: number,
+	total: number,
+	isPlayer?: boolean
+): CSSProperties => {
+	const middle = (total - 1) / 2
+	const rotate = (index - middle) * 10
 
-    const [attackCardId, setAttackCardId] = useState<number | null>()
+	const distanceFromMiddle = Math.abs(index - middle)
+	const translateY = Math.pow(distanceFromMiddle, 2) * 20
 
-    const { startGame, attackCard } = useGame()
-    const { playCard } = useEnemy()
+	return {
+		transform: `rotate(${isPlayer ? rotate : -rotate}deg) translateY(${
+			isPlayer ? translateY : -translateY
+		}px)`,
+	}
+}
 
-    const onTargetHandler = (id: number) => {
-        if (game.currentTurn !== TURN_STATUS.player) return
+const Opponent: FC<IOpponent> = ({
+	setAttachCardId,
+	setAttackerCardId,
+	attackerCardId,
+}) => {
+	const enemy = useAppSelector((state: RootState) => state.enemy)
+	const game = useAppSelector((state: RootState) => state.game)
 
-        attackCardId && attackCard(attackCardId, id)
-    }
+	const { attackCard } = useGame()
+	const { playCard } = useEnemy()
 
-    useEffect(() => {
-        if(game.currentTurn === TURN_STATUS.enemy)
-            playCard()
-    }, [game.currentTurn])
+	const onTargetHandler = (id: number) => {
+		console.log(attackerCardId, 'attacker card id')
+		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
+			console.log('card')
+			attackCard(attackerCardId, id)
+		}
+	}
 
-    return (
-        <div className={styles.opponent}>
-            <div className={styles.interface}>
-                <div className={styles.deck}>
-                    {enemy.deck.filter((card) => card.isDeck == true).map((card, index) => (
-                        <Card
-                            onClick={() => onTargetHandler(card.id)}
-                            key={index}
-                            card={card}
-                        />
-                    ))} 
-                </div>
-            </div>
-            <div className={styles.table}>
-                {enemy.deck.filter((card) => card.isDeck === false).map((card, index) => (
-                    <Card
-                        key={index}
-                        card={card}
-                        enemy={false}
-                    />
-                ))}
-            </div>
-            <p className="text-red-500">{ enemy.mana }</p>
-        </div>
-    )
+	const onPlayCardHandler = (id: number) => {
+		if (game.currentTurn === TURN_STATUS.enemy) {
+		} else {
+			if (attackerCardId === null) return
+			setAttackerCardId(id)
+		}
+	}
+
+	useEffect(() => {
+		if (game.currentTurn === TURN_STATUS.enemy) playCard()
+	}, [game.currentTurn])
+
+	return (
+		<div className={styles.opponent}>
+			<div className={styles.interface}>
+				<div className={styles.deck}>
+					{enemy.deck
+						.filter(card => card.isDeck == true)
+						.map((card, index) => (
+							<Card
+								style={getStyleRotation(
+									index,
+									enemy.deck.filter(card => card.isDeck == true).length,
+									false
+								)}
+								onClick={() => onTargetHandler(card.id)}
+								key={index}
+								card={card}
+								enemy={true}
+							/>
+						))}
+				</div>
+			</div>
+			<div className={styles.table}>
+				{enemy.deck
+					.filter(card => card.isDeck === false)
+					.map((card, index) => (
+						<Card
+							onClick={() => onTargetHandler(card.id)}
+							key={index}
+							card={card}
+							enemy={false}
+						/>
+					))}
+			</div>
+			<p className='text-red-500'>{enemy.mana}</p>
+		</div>
+	)
 }
 
 export default Opponent

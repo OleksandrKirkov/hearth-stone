@@ -1,33 +1,69 @@
-import { NextPageWithLayout } from "./_app"
+import { RootState } from '@/assets/store/store'
+import useGame from '@/hooks/useGame'
+import { GAME_STATUS, TURN_STATUS } from '@/types/game.type'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { NextPageWithLayout } from './_app'
 import styles from './Home.module.css'
-import { useSelector } from "react-redux"
-import { RootState } from "@/assets/store/store"
-import { GAME_STATUS, TURN_STATUS } from "@/types/game.type"
-import useGame from "@/hooks/useGame"
-import Player from "./player/Player"
-import Opponent from "./opponent/Opponent"
+import Opponent from './opponent/Opponent'
+import Player from './player/Player'
 
 const Main: NextPageWithLayout = () => {
-    const game = useSelector((state: RootState) => state.game)
+	const [attachCardState, setAttachCardState] = useState<number | null>(null)
+	const [attackerCardState, setAttackerCardState] = useState<number | null>(
+		null
+	)
 
-    const { startGame, nextTurn } = useGame()
+	const game = useSelector((state: RootState) => state.game)
 
-    const gameStatus = game.status === GAME_STATUS.active
+	const { startGame, nextTurn } = useGame()
 
-    const onStartHandler = async () => {
-        await startGame()
-    }
+	const gameStatus = game.status === GAME_STATUS.active
 
-    return <>{gameStatus ? <div className={styles.wrapper}>
-        <Opponent />
-        <Player />
-        <div className={styles.game_data}>
-            <p className={styles.value}>Current Turn: {TURN_STATUS[game.currentTurn]}</p>
-            <button onClick={nextTurn}>Next turn</button>
-        </div>
-    </div> : <div><button className={styles.button} onClick={onStartHandler}>Start Game</button></div>}</>
+	const onStartHandler = async () => {
+		await startGame()
+	}
+
+	useEffect(() => {
+		console.log(`${attackerCardState} attack ${attachCardState}`)
+	}, [attachCardState])
+
+	return (
+		<>
+			{gameStatus ? (
+				<div className={styles.wrapper}>
+					<Opponent
+						setAttachCardId={(id: number) => setAttachCardState(id)}
+						setAttackerCardId={(id: number) => setAttackerCardState(id)}
+						attackerCardId={attackerCardState}
+					/>
+					<Player
+						setAttachCardId={(id: number) => {
+							setAttachCardState(id)
+						}}
+						setAttackerCardId={(id: number) => {
+							setAttackerCardState(id)
+						}}
+						attackerCardId={attackerCardState}
+					/>
+					<div className={styles.game_data}>
+						<p className={styles.value}>
+							Current Turn: {TURN_STATUS[game.currentTurn]}
+						</p>
+						<button onClick={nextTurn}>Next turn</button>
+					</div>
+				</div>
+			) : (
+				<div>
+					<button className={styles.button} onClick={onStartHandler}>
+						Start Game
+					</button>
+				</div>
+			)}
+		</>
+	)
 }
 
-Main.title = "HearthStone"
+Main.title = 'HearthStone'
 
 export default Main

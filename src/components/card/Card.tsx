@@ -1,32 +1,32 @@
-import { FC } from 'react'
+import { CARD_CLASS, CardType } from '@/types/card.type'
+import { CSSProperties, FC } from 'react'
 import styles from './Card.module.css'
-import { CardType, CARD_CLASS } from '@/types/card.type'
 
 interface ICard {
-    card: CardType
-    onClick?: () => void
-    enemy?: boolean
+	card: CardType
+	onClick?: () => void
+	enemy?: boolean
+	style?: CSSProperties
 }
-const Card: FC<ICard> = ({ card, onClick, enemy = false }) => {
-    
-    console.log(card)
-
-    return <div onClick={onClick}>
-        <div className={styles.card}>
-            <div className={styles.wrapper}>
-                <p className={styles.mana}>{card.mana}</p>
-                <p className={styles.name}>{card.data.name}</p>
-                <p className={styles.class}>{CARD_CLASS[card.class]}</p>
-                <div className={styles.attack}>
-                    <p className={styles.value}>{card.attack}</p>
-                    <p className={styles.value}>{card.health}</p>
-                </div>
-                <div className={styles.image}>
-                    <img src={!enemy ? card.data.image.url : '/card.jpg'} alt='card' />
-                </div>
-            </div>
-        </div>
-    </div>
+const Card: FC<ICard> = ({ card, onClick, style, enemy = false }) => {
+	return (
+		<div style={style} onClick={onClick}>
+			<div className={`${styles.card} ${enemy && styles.enemy}`}>
+				<div className={styles.wrapper}>
+					<p className={styles.mana}>{!enemy && card.mana}</p>
+					<p className={styles.name}>{!enemy && card.data.name}</p>
+					<p className={styles.class}>{!enemy && CARD_CLASS[card.class]}</p>
+					<div className={styles.attack}>
+						<p className={styles.value}>{!enemy && card.attack}</p>
+						<p className={styles.value}>{!enemy && card.health}</p>
+					</div>
+					<div className={styles.image}>
+						<img src={!enemy ? card.data.image.url : ''} alt='card' />
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default Card
