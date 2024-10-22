@@ -1,25 +1,25 @@
 .player {
-    @apply h-[50vh] w-full
+	@apply h-[55vh] w-full;
 }
 
 .table {
-    @apply h-1/2 flex justify-center
+	@apply h-1/2 flex justify-center;
 }
 
 .interface {
-    @apply h-1/2 flex justify-between
+	@apply h-1/2 flex justify-between;
 }
 
 .health,
 .mana {
-    @apply relative w-1/5 h-full z-10
+	@apply relative w-1/5 h-full z-10;
 }
 
 .value {
-    @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-6xl
-        text-white
+	@apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-6xl
+        text-white;
 }
 
 .deck {
-    @apply flex justify-center w-full absolute left-0 bottom-0 translate-y-1/3
+	@apply flex justify-center w-full absolute left-0 bottom-0 translate-y-1/3;
 }

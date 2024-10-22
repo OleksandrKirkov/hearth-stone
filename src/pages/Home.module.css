@@ -1,40 +1,52 @@
 .wrapper {
-    @apply h-[100vh] w-full;
+	@apply h-[100vh] w-full;
 }
 
 .game_data {
-    @apply absolute top-1/2 right-0 -translate-y-1/2; 
+	@apply absolute top-1/2 right-0 -translate-y-1/2 flex flex-col items-end;
 }
 
 .value {
-    @apply text-white text-3xl
+	@apply text-white text-3xl mb-4;
 }
 
 .section {
-    @apply h-[50vh] w-full flex items-start justify-between;
+	@apply h-[50vh] w-full flex items-start justify-between;
 }
 
 .section:nth-child(3) {
-    @apply items-end
+	@apply items-end;
 }
 
 .section:nth-child(2) {
-    @apply flex-row-reverse items-end;
+	@apply flex-row-reverse items-end;
 }
 
 .player_game {
-    @apply flex justify-between gap-12;
+	@apply flex justify-between gap-12;
 }
 
 .mana,
 .health {
-    @apply w-1/5
+	@apply w-1/5;
 }
 
 .deck {
-    @apply flex items-center;
+	@apply flex items-center;
 }
 
 .button {
-    @apply bg-white
+	@apply bg-white rounded-lg px-4 py-2 font-bold;
+}
+
+.start {
+	@apply flex flex-col items-center justify-center h-screen gap-5;
+}
+
+.title {
+	@apply text-white text-6xl font-bold;
+}
+
+.next_turn {
+	@apply bg-white text-xl font-bold px-4 py-2  rounded-lg;
 }

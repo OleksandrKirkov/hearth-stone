@@ -50,11 +50,14 @@ const Main: NextPageWithLayout = () => {
 						<p className={styles.value}>
 							Current Turn: {TURN_STATUS[game.currentTurn]}
 						</p>
-						<button onClick={nextTurn}>Next turn</button>
+						<button className={styles.next_turn} onClick={nextTurn}>
+							Next turn
+						</button>
 					</div>
 				</div>
 			) : (
-				<div>
+				<div className={styles.start}>
+					<h1 className={styles.title}>HEARTH-STONE</h1>
 					<button className={styles.button} onClick={onStartHandler}>
 						Start Game
 					</button>

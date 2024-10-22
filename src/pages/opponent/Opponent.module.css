@@ -1,15 +1,15 @@
 .opponent {
-    @apply h-[50vh]
+	@apply h-[45vh];
 }
 
 .interface {
-    @apply h-1/2
+	@apply h-[35%];
 }
 
 .deck {
-    @apply flex justify-center w-full absolute top-0 -translate-y-1/3 
+	@apply flex justify-center w-full absolute -top-[50px] -translate-y-1/3;
 }
 
 .table {
-    @apply h-1/2 flex justify-center
+	@apply h-1/2 flex justify-center;
 }
