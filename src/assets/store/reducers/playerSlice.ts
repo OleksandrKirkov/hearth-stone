@@ -1,5 +1,5 @@
 import { CardType } from '@/types/card.type'
-import { PlayerType } from '@/types/player.type'
+import { IPlayer, PlayerType } from '@/types/player.type'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
@@ -12,12 +12,7 @@ interface IAttackerCard {
 	attackPerTurn: number
 }
 
-interface IPlayerState {
-	player1: PlayerType
-	player2: PlayerType
-}
-
-const initialState: IPlayerState = {
+const initialState: IPlayer = {
 	player1: {
 		id: 0,
 		name: '',
@@ -42,7 +37,7 @@ const playerSlice = createSlice({
 	reducers: {
 		initialPlayer(
 			state,
-			action: PayloadAction<{ data: PlayerType; player: keyof IPlayerState }>
+			action: PayloadAction<{ data: PlayerType; player: keyof IPlayer }>
 		) {
 			const { player, data } = action.payload
 
@@ -105,7 +100,7 @@ const playerSlice = createSlice({
 
 		updateMana(
 			state,
-			action: PayloadAction<{ value: number; player: keyof IPlayerState }>
+			action: PayloadAction<{ value: number; player: keyof IPlayer }>
 		) {
 			const { value, player } = action.payload
 
@@ -115,7 +110,7 @@ const playerSlice = createSlice({
 		updateCard(
 			state,
 			action: PayloadAction<{
-				player: keyof IPlayerState
+				player: keyof IPlayer
 				card: CardType
 				cardId: number
 			}>
@@ -132,7 +127,7 @@ const playerSlice = createSlice({
 		updateCardItem(
 			state,
 			action: PayloadAction<{
-				player: keyof IPlayerState
+				player: keyof IPlayer
 				item: { [key in keyof CardType]: unknown }
 				cardId: number
 			}>
@@ -148,7 +143,7 @@ const playerSlice = createSlice({
 
 		addCard(
 			state,
-			action: PayloadAction<{ player: keyof IPlayerState; card: CardType }>
+			action: PayloadAction<{ player: keyof IPlayer; card: CardType }>
 		) {
 			const { player, card } = action.payload
 
@@ -157,7 +152,7 @@ const playerSlice = createSlice({
 
 		deleteCard(
 			state,
-			action: PayloadAction<{ player: keyof IPlayerState; cardId: number }>
+			action: PayloadAction<{ player: keyof IPlayer; cardId: number }>
 		) {
 			const { player, cardId } = action.payload
 
