@@ -39,6 +39,13 @@ const enemySlice = createSlice({
 			state.deck.push(action.payload.deck)
 		},
 
+		updateIsAttack(state) {
+			state.deck = state.deck.filter(card => {
+				if (card.isDeck == false) card.isAttack = true
+				return card
+			})
+		},
+
 		playCard(state, action: PayloadAction<{ cardId: number }>) {
 			playCardAction(state, action.payload.cardId)
 		},
@@ -84,6 +91,7 @@ export const {
 	initialEnemy,
 	updateEnemyMana,
 	updateEnemyDeck,
+	updateIsAttack,
 	playCard,
 	attackCard,
 	attackerCard,

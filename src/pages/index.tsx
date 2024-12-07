@@ -9,10 +9,13 @@ import Opponent from './opponent/Opponent'
 import Player from './player/Player'
 
 const Main: NextPageWithLayout = () => {
-	const [attachCardState, setAttachCardState] = useState<number | null>(null)
+	const [defenderCardState, setDefenderCardState] = useState<number | null>(
+		null
+	)
 	const [attackerCardState, setAttackerCardState] = useState<number | null>(
 		null
 	)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 
 	const game = useSelector((state: RootState) => state.game)
 
@@ -21,25 +24,27 @@ const Main: NextPageWithLayout = () => {
 	const gameStatus = game.status === GAME_STATUS.active
 
 	const onStartHandler = async () => {
+		setIsLoading(true)
 		await startGame()
+		setIsLoading(false)
 	}
 
 	useEffect(() => {
-		console.log(`${attackerCardState} attack ${attachCardState}`)
-	}, [attachCardState])
+		console.log(`${attackerCardState} attack ${defenderCardState}`)
+	}, [defenderCardState])
 
 	return (
 		<>
 			{gameStatus ? (
 				<div className={styles.wrapper}>
 					<Opponent
-						setAttachCardId={(id: number) => setAttachCardState(id)}
+						setDefenderCardId={(id: number) => setDefenderCardState(id)}
 						setAttackerCardId={(id: number) => setAttackerCardState(id)}
 						attackerCardId={attackerCardState}
 					/>
 					<Player
-						setAttachCardId={(id: number) => {
-							setAttachCardState(id)
+						setDefenderCardId={(id: number) => {
+							setDefenderCardState(id)
 						}}
 						setAttackerCardId={(id: number) => {
 							setAttackerCardState(id)
@@ -59,7 +64,7 @@ const Main: NextPageWithLayout = () => {
 				<div className={styles.start}>
 					<h1 className={styles.title}>HEARTH-STONE</h1>
 					<button className={styles.button} onClick={onStartHandler}>
-						Start Game
+						{isLoading ? 'Loading...' : 'Start Game'}
 					</button>
 				</div>
 			)}

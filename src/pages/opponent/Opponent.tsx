@@ -1,7 +1,8 @@
 import { RootState } from '@/assets/store/store'
 import Card from '@/components/card/Card'
-import useEnemy from '@/hooks/useEnemy'
+import useAction from '@/hooks/useAction'
 import useGame from '@/hooks/useGame'
+import usePlayer from '@/hooks/usePlayer'
 import { useAppSelector } from '@/hooks/useRedux'
 import { TURN_STATUS } from '@/types/game.type'
 import { CSSProperties, FC, useEffect } from 'react'
@@ -9,7 +10,7 @@ import styles from './Opponent.module.css'
 
 interface IOpponent {
 	setAttackerCardId: (id: number) => void
-	setAttachCardId: (id: number) => void
+	setDefenderCardId: (id: number) => void
 	attackerCardId: number | null
 }
 
@@ -31,19 +32,20 @@ const getStyleRotation = (
 	}
 }
 
-const Opponent: FC<IOpponent> = ({
-	setAttachCardId,
-	setAttackerCardId,
-	attackerCardId,
-}) => {
-	const enemy = useAppSelector((state: RootState) => state.enemy)
+const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
+	const player = useAppSelector((state: RootState) => state.player)['player2']
 	const game = useAppSelector((state: RootState) => state.game)
 
-	const { attackCard } = useGame()
-	const { playCard } = useEnemy()
+	const { attackCard } = useAction('player1')
+	const { playCard } = usePlayer('player2')
+	const { nextTurn } = useGame()
+
+	const deckCards = player.deck.filter(
+		card => card.isDeck && player.mana >= card.mana
+	)
+	const playingCards = player.deck.filter(card => !card.isDeck && card.isAttack)
 
 	const onTargetHandler = (id: number) => {
-		console.log(attackerCardId, 'attacker card id')
 		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
 			console.log('card')
 			attackCard(attackerCardId, id)
@@ -59,23 +61,34 @@ const Opponent: FC<IOpponent> = ({
 	}
 
 	useEffect(() => {
-		if (game.currentTurn === TURN_STATUS.enemy) playCard()
+		if (game.currentTurn === TURN_STATUS.enemy) {
+			const playCardIndex = deckCards.length
+				? Math.floor(Math.random() * deckCards.length)
+				: undefined
+			console.log(playCardIndex, deckCards)
+			if (playCardIndex != undefined) playCard(deckCards[playCardIndex].id)
+			const cardIndex = playingCards.length
+				? Math.floor(Math.random() * playingCards.length)
+				: undefined
+			if (cardIndex != undefined) setAttackerCardId(playingCards[cardIndex].id)
+			nextTurn()
+		}
 	}, [game.currentTurn])
 
 	return (
 		<div className={styles.opponent}>
 			<div className={styles.interface}>
 				<div className={styles.deck}>
-					{enemy.deck
+					{player.deck
 						.filter(card => card.isDeck == true)
 						.map((card, index) => (
 							<Card
 								style={getStyleRotation(
 									index,
-									enemy.deck.filter(card => card.isDeck == true).length,
+									player.deck.filter(card => card.isDeck == true).length,
 									false
 								)}
-								onClick={() => onTargetHandler(card.id)}
+								onClick={() => onPlayCardHandler(card.id)}
 								key={index}
 								card={card}
 								enemy={true}
@@ -84,7 +97,7 @@ const Opponent: FC<IOpponent> = ({
 				</div>
 			</div>
 			<div className={styles.table}>
-				{enemy.deck
+				{player.deck
 					.filter(card => card.isDeck === false)
 					.map((card, index) => (
 						<Card
@@ -95,7 +108,7 @@ const Opponent: FC<IOpponent> = ({
 						/>
 					))}
 			</div>
-			<p className='text-red-500'>{enemy.mana}</p>
+			<p className='text-red-500'>{player.mana}</p>
 		</div>
 	)
 }

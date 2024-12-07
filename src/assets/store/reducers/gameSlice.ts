@@ -10,7 +10,7 @@ const gameSlice = createSlice({
 	name: 'game',
 	initialState,
 	reducers: {
-		startAction(state) {
+		startGame(state) {
 			state.status = GAME_STATUS.active
 		},
 
@@ -38,7 +38,7 @@ const gameSlice = createSlice({
 })
 
 export const {
-	startAction,
+	startGame,
 	pausedGame,
 	finishedGame,
 	nextTurn,

@@ -3,14 +3,14 @@ import { IPlayer, PlayerType } from '@/types/player.type'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-interface IAttackCard {
-	health: number
-}
+// interface IAttackCard {
+// 	health: number
+// }
 
-interface IAttackerCard {
-	isAttack: boolean
-	attackPerTurn: number
-}
+// interface IAttackerCard {
+// 	isAttack: boolean
+// 	attackPerTurn: number
+// }
 
 const initialState: IPlayer = {
 	player1: {
@@ -107,6 +107,15 @@ const playerSlice = createSlice({
 			state[player].mana = value
 		},
 
+		updateCards(
+			state,
+			action: PayloadAction<{ player: keyof IPlayer; cards: CardType[] }>
+		) {
+			const { player, cards } = action.payload
+
+			state[player].deck = cards
+		},
+
 		updateCard(
 			state,
 			action: PayloadAction<{
@@ -174,5 +183,6 @@ export const {
 	updateCardItem,
 	addCard,
 	deleteCard,
+	updateCards,
 } = playerSlice.actions
 export default playerSlice.reducer
