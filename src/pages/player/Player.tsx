@@ -53,7 +53,6 @@ const Player: FC<IPlayer> = ({
 
 	const onPlayCardHandler = (id: number, mana: number) => {
 		if (game.currentTurn !== TURN_STATUS.player) return
-		console.log(player.mana, mana)
 
 		mana <= player.mana && playCard(id)
 	}

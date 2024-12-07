@@ -1,7 +1,7 @@
 import { RootState } from '@/assets/store/store'
 import useGame from '@/hooks/useGame'
 import { GAME_STATUS, TURN_STATUS } from '@/types/game.type'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NextPageWithLayout } from './_app'
 import styles from './Home.module.css'
@@ -28,10 +28,6 @@ const Main: NextPageWithLayout = () => {
 		await startGame()
 		setIsLoading(false)
 	}
-
-	useEffect(() => {
-		console.log(`${attackerCardState} attack ${defenderCardState}`)
-	}, [defenderCardState])
 
 	return (
 		<>

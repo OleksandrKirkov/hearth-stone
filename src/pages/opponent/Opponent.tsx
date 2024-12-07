@@ -61,18 +61,22 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 	}
 
 	useEffect(() => {
-		if (game.currentTurn === TURN_STATUS.enemy) {
-			const playCardIndex = deckCards.length
-				? Math.floor(Math.random() * deckCards.length)
-				: undefined
-			console.log(playCardIndex, deckCards)
-			if (playCardIndex != undefined) playCard(deckCards[playCardIndex].id)
-			const cardIndex = playingCards.length
-				? Math.floor(Math.random() * playingCards.length)
-				: undefined
-			if (cardIndex != undefined) setAttackerCardId(playingCards[cardIndex].id)
-			nextTurn()
-		}
+		const timer = setTimeout(() => {
+			if (game.currentTurn === TURN_STATUS.enemy) {
+				const playCardIndex = deckCards.length
+					? Math.floor(Math.random() * deckCards.length)
+					: undefined
+				if (playCardIndex != undefined) playCard(deckCards[playCardIndex].id)
+				const cardIndex = playingCards.length
+					? Math.floor(Math.random() * playingCards.length)
+					: undefined
+				if (cardIndex != undefined)
+					setAttackerCardId(playingCards[cardIndex].id)
+				nextTurn()
+			}
+
+			clearTimeout(timer)
+		}, 2000)
 	}, [game.currentTurn])
 
 	return (
@@ -89,7 +93,7 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 									false
 								)}
 								onClick={() => onPlayCardHandler(card.id)}
-								key={index}
+								key={`${card.id}_${index}`}
 								card={card}
 								enemy={true}
 							/>
@@ -102,7 +106,7 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 					.map((card, index) => (
 						<Card
 							onClick={() => onTargetHandler(card.id)}
-							key={index}
+							key={`${card.id}_${index}`}
 							card={card}
 							enemy={false}
 						/>

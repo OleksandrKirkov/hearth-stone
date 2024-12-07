@@ -24,6 +24,8 @@ const playCardAction = ({
 		})
 	)
 
+	console.log('play card', playerType)
+
 	dispatch(
 		updateCard({
 			player: playerType,

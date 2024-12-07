@@ -7,6 +7,7 @@ const usePlayer = (playerType: keyof IPlayer) => {
 	const { player } = useAppSelector(state => state)
 
 	const playCard = (cardId: number) => {
+		console.log('play card')
 		playCardAction({ player, dispatch, playerType, cardId })
 	}
 

@@ -9,11 +9,16 @@ import useDeck from '@/hooks/useDeck'
 import { ActionType } from '@/types/action.type'
 import { CardType } from '@/types/card.type'
 import { TURN_STATUS } from '@/types/game.type'
+import { IPlayer } from '@/types/player.type'
 
 const updateIsAttack = (deck: CardType[]): CardType[] => {
-	return deck.map(card => {
+	const cards = deck
+	return cards.map(card => {
 		if (!card.isDeck) {
-			card.isAttack = true
+			return {
+				...card,
+				isAttack: true,
+			}
 		}
 
 		return card
@@ -30,60 +35,57 @@ const nextTurnAction = async ({ player, game, dispatch }: ActionType) => {
 
 	const isPlayerTurn = game.currentTurn === TURN_STATUS.player
 
-	try {
-		if (isPlayerTurn) {
-			dispatch(nextTurnReducer({ turn: TURN_STATUS.enemy }))
-			dispatch(
-				updateMana({ player: 'player2', value: player['player2'].mana + 1 })
-			)
-
-			dispatch(
-				updateCards({
-					player: 'player2',
-					cards: [...updateIsAttack(player2Deck)],
-				})
-			)
-
-			if (
-				player['player2'].deck.filter(card => card.isDeck).length < DECK_LENGTH
-			) {
+	const addCardDeck = async (type: keyof IPlayer) => {
+		try {
+			if (player[type].deck.filter(card => card.isDeck).length < DECK_LENGTH) {
 				const card = await updateDeck()
 				if (card)
 					dispatch(
 						addCard({
-							player: 'player2',
+							player: type,
 							card: card,
 						})
 					)
 			}
-		} else {
-			dispatch(nextTurnReducer({ turn: TURN_STATUS.player }))
-			dispatch(
-				updateMana({ player: 'player1', value: player['player1'].mana + 1 })
-			)
-
-			dispatch(
-				updateCards({
-					player: 'player1',
-					cards: [...updateIsAttack(player1Deck)],
-				})
-			)
-
-			if (
-				player['player1'].deck.filter(card => card.isDeck).length < DECK_LENGTH
-			) {
-				const card = await updateDeck()
-				if (card)
-					dispatch(
-						addCard({
-							player: 'player1',
-							card: card,
-						})
-					)
-			}
+		} catch (e: unknown) {
+			console.error(e)
 		}
-	} catch (e: unknown) {
-		console.error(e)
+	}
+
+	if (isPlayerTurn) {
+		console.log(
+			player['player2'].deck.filter(card => card.isDeck).length,
+			'player2'
+		)
+		addCardDeck('player2')
+		dispatch(nextTurnReducer({ turn: TURN_STATUS.enemy }))
+		dispatch(
+			updateMana({ player: 'player2', value: player['player2'].mana + 1 })
+		)
+
+		dispatch(
+			updateCards({
+				player: 'player2',
+				cards: [...updateIsAttack(player2Deck)],
+			})
+		)
+	} else {
+		console.log(
+			player['player1'].deck.filter(card => card.isDeck).length,
+			'player1'
+		)
+		addCardDeck('player1')
+		dispatch(nextTurnReducer({ turn: TURN_STATUS.player }))
+		dispatch(
+			updateMana({ player: 'player1', value: player['player1'].mana + 1 })
+		)
+
+		dispatch(
+			updateCards({
+				player: 'player1',
+				cards: [...updateIsAttack(player1Deck)],
+			})
+		)
 	}
 }
 
