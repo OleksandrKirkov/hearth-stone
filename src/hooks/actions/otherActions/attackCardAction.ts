@@ -1,4 +1,4 @@
-import { updateCard } from '@/assets/store/reducers/playerSlice'
+import { deleteCard, updateCard } from '@/assets/store/reducers/playerSlice'
 import { ActionType } from '@/types/action.type'
 import { IPlayer } from '@/types/player.type'
 
@@ -29,7 +29,7 @@ const attackCardAction = ({
 		card => card.id === attackerId
 	)
 
-	if (!defenderCard || !attackerCard) return
+	if (!defenderCard || !attackerCard || !attackerCard.isAttack) return
 
 	// update attacker card
 	dispatch(
@@ -55,6 +55,21 @@ const attackCardAction = ({
 			cardId: defenderId,
 		})
 	)
+
+	const updatedDefenderCard = player[defender].deck.find(
+		card => card.id === defenderId
+	)
+
+	if (!updatedDefenderCard) return
+
+	if (updatedDefenderCard.health - attackerCard.attack <= 0) {
+		dispatch(
+			deleteCard({
+				player: defender,
+				cardId: defenderId,
+			})
+		)
+	}
 }
 
 export default attackCardAction

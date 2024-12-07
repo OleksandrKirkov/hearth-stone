@@ -1,5 +1,6 @@
 import { RootState } from '@/assets/store/store'
 import Card from '@/components/card/Card'
+import useAction from '@/hooks/useAction'
 import usePlayer from '@/hooks/usePlayer'
 import { useAppSelector } from '@/hooks/useRedux'
 import { TURN_STATUS } from '@/types/game.type'
@@ -9,7 +10,6 @@ import styles from './Player.module.css'
 
 interface IPlayer {
 	setAttackerCardId: (id: number) => void
-	setDefenderCardId: (id: number) => void
 	attackerCardId: number | null
 }
 
@@ -31,19 +31,14 @@ const getStyleRotation = (
 	}
 }
 
-const Player: FC<IPlayer> = ({
-	setDefenderCardId,
-	setAttackerCardId,
-	attackerCardId,
-}) => {
+const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 	const player = useAppSelector((state: RootState) => state.player)['player1']
 	const game = useAppSelector((state: RootState) => state.game)
 
 	const { playCard } = usePlayer('player1')
+	const { attackCard } = useAction('player2')
 
-	const playingCards = player.deck.filter(
-		card => !card.isDeck && player.mana >= card.mana
-	)
+	const playingCards = player.deck.filter(card => !card.isDeck)
 
 	const onAttackerCardHandler = (id: number) => {
 		if (game.currentTurn == TURN_STATUS.player) {
@@ -58,11 +53,13 @@ const Player: FC<IPlayer> = ({
 	}
 
 	useEffect(() => {
+		console.log(attackerCardId, 'attacker card')
 		if (game.currentTurn === TURN_STATUS.enemy && attackerCardId) {
 			const cardIndex = playingCards.length
 				? Math.floor(Math.random() * playingCards.length)
 				: undefined
-			if (cardIndex != undefined) setDefenderCardId(playingCards[cardIndex].id)
+			if (cardIndex != undefined)
+				attackCard(attackerCardId, playingCards[cardIndex].id)
 		}
 	}, [game.currentTurn, attackerCardId])
 

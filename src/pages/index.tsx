@@ -9,9 +9,6 @@ import Opponent from './opponent/Opponent'
 import Player from './player/Player'
 
 const Main: NextPageWithLayout = () => {
-	const [defenderCardState, setDefenderCardState] = useState<number | null>(
-		null
-	)
 	const [attackerCardState, setAttackerCardState] = useState<number | null>(
 		null
 	)
@@ -34,14 +31,10 @@ const Main: NextPageWithLayout = () => {
 			{gameStatus ? (
 				<div className={styles.wrapper}>
 					<Opponent
-						setDefenderCardId={(id: number) => setDefenderCardState(id)}
 						setAttackerCardId={(id: number) => setAttackerCardState(id)}
 						attackerCardId={attackerCardState}
 					/>
 					<Player
-						setDefenderCardId={(id: number) => {
-							setDefenderCardState(id)
-						}}
 						setAttackerCardId={(id: number) => {
 							setAttackerCardState(id)
 						}}

@@ -10,7 +10,6 @@ import styles from './Opponent.module.css'
 
 interface IOpponent {
 	setAttackerCardId: (id: number) => void
-	setDefenderCardId: (id: number) => void
 	attackerCardId: number | null
 }
 
@@ -43,11 +42,10 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 	const deckCards = player.deck.filter(
 		card => card.isDeck && player.mana >= card.mana
 	)
-	const playingCards = player.deck.filter(card => !card.isDeck && card.isAttack)
+	const playingCards = player.deck.filter(card => !card.isDeck)
 
 	const onTargetHandler = (id: number) => {
 		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
-			console.log('card')
 			attackCard(attackerCardId, id)
 		}
 	}

@@ -16,7 +16,6 @@ const useGame = () => {
 	}
 
 	const nextTurn = () => {
-		console.log('next turn')
 		nextTurnAction({ player, game, dispatch })
 	}
 

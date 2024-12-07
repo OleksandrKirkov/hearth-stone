@@ -53,10 +53,6 @@ const nextTurnAction = async ({ player, game, dispatch }: ActionType) => {
 	}
 
 	if (isPlayerTurn) {
-		console.log(
-			player['player2'].deck.filter(card => card.isDeck).length,
-			'player2'
-		)
 		addCardDeck('player2')
 		dispatch(nextTurnReducer({ turn: TURN_STATUS.enemy }))
 		dispatch(
@@ -70,10 +66,6 @@ const nextTurnAction = async ({ player, game, dispatch }: ActionType) => {
 			})
 		)
 	} else {
-		console.log(
-			player['player1'].deck.filter(card => card.isDeck).length,
-			'player1'
-		)
 		addCardDeck('player1')
 		dispatch(nextTurnReducer({ turn: TURN_STATUS.player }))
 		dispatch(
