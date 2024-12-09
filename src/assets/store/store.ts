@@ -1,18 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import gameReducer from "@/assets/store/reducers/gameSlice"
-import playerReducer from "@/assets/store/reducers/playerSlice"
-import enemyReducer from "@/assets/store/reducers/enemySlice"
+import gameReducer from '@/assets/store/reducers/gameSlice'
+import playerReducer from '@/assets/store/reducers/playerSlice'
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
-    reducer: {
-        game: gameReducer,
-        player: playerReducer,
-        enemy: enemyReducer
-    },
+	reducer: {
+		game: gameReducer,
+		player: playerReducer,
+	},
 
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware()
+	middleware: getDefaultMiddleware => getDefaultMiddleware(),
 })
 
 setupListeners(store.dispatch)

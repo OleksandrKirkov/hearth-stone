@@ -13,13 +13,21 @@ interface IOpponent {
 	attackerCardId: number | null
 }
 
+function calculateOffset(index: number, totalCards: number) {
+	const centerIndex = (totalCards - 1) / 2
+	const distanceFromCenter = Math.abs(index - centerIndex)
+	const maxOffset = -200
+	const offset = maxOffset * (distanceFromCenter / centerIndex)
+	return index < centerIndex ? -offset : offset
+}
+
 const getStyleRotation = (
 	index: number,
 	total: number,
 	isPlayer?: boolean
 ): CSSProperties => {
 	const middle = (total - 1) / 2
-	const rotate = (index - middle) * 10
+	const rotate = (index - middle) * 6
 
 	const distanceFromMiddle = Math.abs(index - middle)
 	const translateY = Math.pow(distanceFromMiddle, 2) * 20
@@ -27,7 +35,7 @@ const getStyleRotation = (
 	return {
 		transform: `rotate(${isPlayer ? rotate : -rotate}deg) translateY(${
 			isPlayer ? translateY : -translateY
-		}px)`,
+		}px) translateX(${calculateOffset(index, 6)}px)`,
 	}
 }
 
@@ -35,7 +43,7 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 	const player = useAppSelector((state: RootState) => state.player)['player2']
 	const game = useAppSelector((state: RootState) => state.game)
 
-	const { attackCard } = useAction('player1')
+	const { attackCard, attackHero } = useAction('player1')
 	const { playCard } = usePlayer('player2')
 	const { nextTurn } = useGame()
 
@@ -47,6 +55,12 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 	const onTargetHandler = (id: number) => {
 		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
 			attackCard(attackerCardId, id)
+		}
+	}
+
+	const onAttackHeroHandler = () => {
+		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
+			attackHero(attackerCardId)
 		}
 	}
 
@@ -111,6 +125,9 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 					))}
 			</div>
 			<p className='text-red-500'>{player.mana}</p>
+			<button className={styles.hero} onClick={onAttackHeroHandler}>
+				{player.hero}
+			</button>{' '}
 		</div>
 	)
 }

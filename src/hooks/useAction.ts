@@ -1,6 +1,6 @@
 import { RootState } from '@/assets/store/store'
 import { IPlayer } from '@/types/player.type'
-import { attackCardAction } from './actions/otherActions'
+import { attackCardAction, attackHeroAction } from './actions/otherActions'
 import { useAppDispatch, useAppSelector } from './useRedux'
 
 const useAction = (playerType: keyof IPlayer) => {
@@ -18,8 +18,18 @@ const useAction = (playerType: keyof IPlayer) => {
 		})
 	}
 
+	const attackHero = (attackerId: number) => {
+		attackHeroAction({
+			player,
+			playerType,
+			dispatch,
+			attackerId,
+		})
+	}
+
 	return {
 		attackCard,
+		attackHero,
 	}
 }
 

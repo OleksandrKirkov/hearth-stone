@@ -1,5 +1,5 @@
 import { initialPlayer } from '@/assets/store/reducers/playerSlice'
-import { PLAYER_NAME, START_MANA } from '@/contstants/game'
+import { HERO_HEALTH, PLAYER_NAME, START_MANA } from '@/contstants/game'
 import useDeck from '@/hooks/useDeck'
 import { ActionType } from '@/types/action.type'
 
@@ -14,7 +14,7 @@ const initPlayerAction = async ({ dispatch }: ActionType) => {
 				name: PLAYER_NAME,
 				mana: 1,
 				deck: await getDeck(),
-				hero: '',
+				hero: HERO_HEALTH,
 			},
 		})
 	)
@@ -27,7 +27,7 @@ const initPlayerAction = async ({ dispatch }: ActionType) => {
 				name: 'Opponent',
 				mana: START_MANA,
 				deck: await getDeck(),
-				hero: '',
+				hero: HERO_HEALTH,
 			},
 		})
 	)

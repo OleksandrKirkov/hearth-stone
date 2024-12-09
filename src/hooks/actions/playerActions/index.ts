@@ -1,3 +1,4 @@
+import initPlayerAction from './initPlayerAction'
 import playCardAction from './playCardAction'
 
-export { playCardAction }
+export { initPlayerAction, playCardAction }

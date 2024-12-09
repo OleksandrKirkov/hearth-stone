@@ -1,48 +1,84 @@
 .card {
-	@apply relative w-[260px] h-[360px] overflow-hidden -mx-6;
+	@apply relative w-[260px] h-[400px] overflow-hidden -mx-6 rounded-[24px] shadow-[0px_0px_16px_2px_rgba(0,0,0,0.6)] scale-75;
 }
 
-.card::after {
-	@apply absolute bg-[url("/card.png")] bg-no-repeat bg-center bg-contain
-        w-full h-full top-0 left-0;
-	content: '';
+.card_data {
+	@apply absolute bottom-0 left-0 right-0 w-full h-[45%] flex flex-col justify-end p-[16px];
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.68) 30%,
+		rgba(0, 0, 0, 0.9) 94%
+	);
 }
-
-.card.enemy::after {
-	@apply bg-[url("/card-back.png")];
+.card_block {
+	@apply w-full min-h-[80%] bg-[#32323287] border-[rgb(51,51,51)] border-[1px] border-solid rounded-[1rem] backdrop-blur-[4] px-[1rem] py-[24px] relative;
 }
-
-.wrapper {
-	@apply py-6 relative h-full px-6;
-}
-
-.mana {
-	@apply absolute text-center text-black text-3xl z-10 top-[7%] left-[11%] w-[32px] 
-        font-bold;
-}
-
 .name {
-	@apply absolute text-center text-white text-lg z-10 top-[9%] w-full left-0;
+	@apply absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 
+        bg-[#1e1d1dc7] border-[#2C2C2C] py-[2px] px-5 border-[1px] border-solid
+        rounded-[32px];
 }
-
+.name_value {
+	@apply text-white text-[14px];
+}
+.description {
+	@apply overflow-hidden h-[85px];
+}
+.description_value {
+	@apply text-white text-[14px];
+}
 .class {
-	@apply absolute text-center text-white text-sm z-10 top-[14%] w-full left-0;
+	@apply absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 
+        bg-[#1e1d1dc7] border-[#2C2C2C] py-[2px] px-5 border-[1px] border-solid
+        rounded-[32px];
+}
+.class_value {
+	@apply text-white text-[14px];
 }
 
-.attack {
-	@apply w-full flex items-center justify-between top-[54%] z-10 absolute
-        px-[36px] left-0;
+.characteristic {
+	@apply absolute flex top-[16px] left-0 w-full px-[16px] justify-between;
+}
+.left {
+	@apply flex flex-col justify-between gap-[8px];
+}
+.item {
+	@apply flex items-center bg-[#282828b8] pr-[8px] h-[30px] rounded-[16px];
+}
+.type {
+	@apply w-[36px] h-[36px] rounded-full p-[6px] bg-[#1E1E1E];
+}
+.media {
+	@apply relative w-full h-full;
+}
+.item_image {
+	@apply rounded-full w-full h-full;
+}
+.item_value {
+	@apply text-white;
 }
 
-.value {
-	@apply font-bold text-white text-3xl;
+.right {
+	@apply flex flex-col justify-end items-end gap-[8px];
 }
-
-.image {
-	@apply overflow-hidden flex items-center justify-center;
-	flex: 0 0 60%;
+.mana {
+	@apply relative w-[42px] h-[57px];
 }
-
-.image img {
-	@apply max-w-[180px] object-center;
+.mana_image {
+	@apply w-full h-full;
+}
+.mana_value {
+	@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[30%] 
+		text-[24px] text-white;
+}
+.health {
+	@apply relative w-[64px] h-[54px];
+}
+.health_image {
+	@apply w-full h-full;
+}
+.health_value {
+	@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%]
+		text-[32px] text-white;
 }

@@ -3,29 +3,20 @@ import { IPlayer, PlayerType } from '@/types/player.type'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-// interface IAttackCard {
-// 	health: number
-// }
-
-// interface IAttackerCard {
-// 	isAttack: boolean
-// 	attackPerTurn: number
-// }
-
 const initialState: IPlayer = {
 	player1: {
 		id: 0,
 		name: '',
 		mana: 0,
 		deck: [],
-		hero: '',
+		hero: 0,
 	},
 	player2: {
 		id: 1,
 		name: '',
 		mana: 0,
 		deck: [],
-		hero: '',
+		hero: 0,
 	},
 }
 
@@ -43,60 +34,6 @@ const playerSlice = createSlice({
 
 			state[player] = data
 		},
-
-		// updatePlayerMana(state) {
-		// 	state.mana += 1
-		// },
-
-		// updatePlayerDeck(state, action: PayloadAction<{ deck: CardType }>) {
-		// 	state.deck.push(action.payload.deck)
-		// },
-
-		// updateIsAttack(state) {
-		// 	state.deck = state.deck.filter(card => {
-		// 		if (card.isDeck == false) card.isAttack = true
-		// 		return card
-		// 	})
-		// },
-
-		// setCurrentTurn(state) {
-		// 	state.mana += 1
-		// },
-
-		// playCard(state, action: PayloadAction<{ cardId: number }>) {
-		// 	playAction(state, action.payload.cardId)
-		// },
-
-		// attackCard(
-		// 	state,
-		// 	action: PayloadAction<{ cardId: number; data: IAttackCard }>
-		// ) {
-		// 	state.deck = state.deck.filter(card => {
-		// 		if (card.id === action.payload.cardId) {
-		// 			card.health -= action.payload.data.health
-		// 		}
-
-		// 		return card
-		// 	})
-
-		// 	state.deck = state.deck.filter(card => card.health > 0)
-		// },
-
-		// attackerCard(
-		// 	state,
-		// 	action: PayloadAction<{ cardId: number; data: IAttackerCard }>
-		// ) {
-		// 	state.deck = state.deck.filter(card => {
-		// 		if (card.id === action.payload.cardId) {
-		// 			card.isAttack = action.payload.data.isAttack
-		// 			card.attackPerTurn -= action.payload.data.attackPerTurn
-		// 		}
-
-		// 		return card
-		// 	})
-
-		// 	state.deck = state.deck.filter(card => card.attackPerTurn > 0)
-		// },
 
 		updateMana(
 			state,
@@ -167,17 +104,21 @@ const playerSlice = createSlice({
 
 			state[player].deck = state[player].deck.filter(card => card.id !== cardId)
 		},
+
+		updateHero(
+			state,
+			action: PayloadAction<{ player: keyof IPlayer; value: number }>
+		) {
+			const { player, value } = action.payload
+
+			state[player].hero = value
+		},
 	},
 })
 
 export const {
+	updateHero,
 	initialPlayer,
-	// updatePlayerMana,
-	// updatePlayerDeck,
-	// updateIsAttack,
-	// playCard,
-	// attackCard,
-	// attackerCard,
 	updateMana,
 	updateCard,
 	updateCardItem,

@@ -18,7 +18,8 @@ const Main: NextPageWithLayout = () => {
 
 	const { startGame, nextTurn } = useGame()
 
-	const gameStatus = game.status === GAME_STATUS.active
+	const gameStart = game.status === GAME_STATUS.active
+	const gameFinish = game.status === GAME_STATUS.finished
 
 	const onStartHandler = async () => {
 		setIsLoading(true)
@@ -26,37 +27,47 @@ const Main: NextPageWithLayout = () => {
 		setIsLoading(false)
 	}
 
+	if (gameFinish) {
+		return (
+			<div className={styles.start}>
+				<h1 className={styles.title}>GAME OVER</h1>
+			</div>
+		)
+	}
+
+	if (!gameStart) {
+		return (
+			<div className={styles.start}>
+				<h1 className={styles.title}>HEARTH-STONE</h1>
+				<button className={styles.button} onClick={onStartHandler}>
+					{isLoading ? 'Loading...' : 'Start Game'}
+				</button>
+			</div>
+		)
+	}
+
 	return (
 		<>
-			{gameStatus ? (
-				<div className={styles.wrapper}>
-					<Opponent
-						setAttackerCardId={(id: number) => setAttackerCardState(id)}
-						attackerCardId={attackerCardState}
-					/>
-					<Player
-						setAttackerCardId={(id: number) => {
-							setAttackerCardState(id)
-						}}
-						attackerCardId={attackerCardState}
-					/>
-					<div className={styles.game_data}>
-						<p className={styles.value}>
-							Current Turn: {TURN_STATUS[game.currentTurn]}
-						</p>
-						<button className={styles.next_turn} onClick={nextTurn}>
-							Next turn
-						</button>
-					</div>
-				</div>
-			) : (
-				<div className={styles.start}>
-					<h1 className={styles.title}>HEARTH-STONE</h1>
-					<button className={styles.button} onClick={onStartHandler}>
-						{isLoading ? 'Loading...' : 'Start Game'}
+			<div className={styles.wrapper}>
+				<Opponent
+					setAttackerCardId={(id: number) => setAttackerCardState(id)}
+					attackerCardId={attackerCardState}
+				/>
+				<Player
+					setAttackerCardId={(id: number) => {
+						setAttackerCardState(id)
+					}}
+					attackerCardId={attackerCardState}
+				/>
+				<div className={styles.game_data}>
+					<p className={styles.value}>
+						Current Turn: {TURN_STATUS[game.currentTurn]}
+					</p>
+					<button className={styles.next_turn} onClick={nextTurn}>
+						Next turn
 					</button>
 				</div>
-			)}
+			</div>
 		</>
 	)
 }

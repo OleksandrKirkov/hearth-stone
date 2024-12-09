@@ -5,7 +5,7 @@ export type PlayerType = {
 	name: string
 	mana: number
 	deck: CardType[]
-	hero: string
+	hero: number
 }
 
 export interface IPlayer {

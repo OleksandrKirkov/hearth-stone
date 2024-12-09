@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
 body {
-    @apply w-[100vw] h-[100vh] bg-[url('/background.jpeg')] bg-no-repeat bg-center 
-        bg-cover overflow-hidden;
+	@apply w-[100vw] h-[100vh] bg-[url('/background1.jpg')] bg-no-repeat bg-center 
+        bg-cover overflow-hidden object-fill;
 }
 
 .main {

@@ -1,3 +1,4 @@
 import attackCardAction from './attackCardAction'
+import attackHeroAction from './attackHeroAction'
 
-export { attackCardAction }
+export { attackCardAction, attackHeroAction }

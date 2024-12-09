@@ -18,7 +18,7 @@ const useDeck = () => {
 				cards.push({
 					id: Number(character.data.id),
 					data: character.data,
-					class: CARD_CLASS.rush,
+					class: CARD_CLASS.RUSH,
 					health: 6,
 					attack: 3,
 					attackPerTurn: 3,
@@ -38,7 +38,7 @@ const useDeck = () => {
 			return {
 				id: Number(character.data?.id),
 				data: character.data,
-				class: CARD_CLASS.rush,
+				class: CARD_CLASS.RUSH,
 				health: 6,
 				attack: 3,
 				attackPerTurn: 3,

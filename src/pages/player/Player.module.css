@@ -16,10 +16,14 @@
 }
 
 .value {
-	@apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-6xl
-        text-white;
+	@apply absolute top-[55%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-5xl
+        text-white opacity-70;
 }
 
 .deck {
-	@apply flex justify-center w-full absolute left-0 bottom-0 translate-y-1/3;
+	@apply flex justify-center w-full absolute left-0 bottom-0 translate-y-[120px] gap-[-5px];
+}
+
+.image {
+	@apply relative z-10;
 }

@@ -10,7 +10,7 @@ const useGame = () => {
 	const { player, game } = useAppSelector((state: RootState) => state)
 
 	const startGame = async () => {
-		initPlayerAction({ dispatch })
+		await initPlayerAction({ dispatch })
 
 		updateStatusAction({ dispatch, status: GAME_STATUS.active })
 	}

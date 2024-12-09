@@ -13,13 +13,21 @@ interface IPlayer {
 	attackerCardId: number | null
 }
 
+function calculateOffset(index: number, totalCards: number) {
+	const centerIndex = (totalCards - 1) / 2
+	const distanceFromCenter = Math.abs(index - centerIndex)
+	const maxOffset = -200
+	const offset = maxOffset * (distanceFromCenter / centerIndex)
+	return index < centerIndex ? -offset : offset
+}
+
 const getStyleRotation = (
 	index: number,
 	total: number,
 	isPlayer?: boolean
 ): CSSProperties => {
 	const middle = (total - 1) / 2
-	const rotate = (index - middle) * 10
+	const rotate = (index - middle) * 6
 
 	const distanceFromMiddle = Math.abs(index - middle)
 	const translateY = Math.pow(distanceFromMiddle, 2) * 20
@@ -27,9 +35,14 @@ const getStyleRotation = (
 	return {
 		transform: `rotate(${isPlayer ? rotate : -rotate}deg) translateY(${
 			isPlayer ? translateY : -translateY
-		}px)`,
+		}px) scale(0.70) translateX(${calculateOffset(index, 6)}px)`,
+		zIndex: 6 - index,
 	}
 }
+
+// ${index < 3 ? '' : '-'}${
+// 	(index + 1) * (60 / (index + 1))
+// }
 
 const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 	const player = useAppSelector((state: RootState) => state.player)['player1']
@@ -49,7 +62,7 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 	const onPlayCardHandler = (id: number, mana: number) => {
 		if (game.currentTurn !== TURN_STATUS.player) return
 
-		mana <= player.mana && playCard(id)
+		if (mana <= player.mana) playCard(id)
 	}
 
 	useEffect(() => {
@@ -80,12 +93,13 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 			<div className={styles.interface}>
 				<div className={styles.health}>
 					<Image
+						className={styles.image}
 						src='/health.png'
 						alt='health'
 						objectFit='contain'
 						fill={true}
 					/>
-					<p></p>
+					<p className={styles.value}>{player.hero}</p>
 				</div>
 				<div className={styles.deck}>
 					{player.deck
@@ -105,7 +119,13 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 						))}
 				</div>
 				<div className={styles.mana}>
-					<Image src='/mana.png' alt='mana' objectFit='contain' fill={true} />
+					<Image
+						className={styles.image}
+						src='/mana.png'
+						alt='mana'
+						objectFit='contain'
+						fill={true}
+					/>
 					<p className={styles.value}>{player.mana}</p>
 				</div>
 			</div>
