@@ -1,15 +1,15 @@
 export enum GAME_STATUS {
-    'active',
-    'paused',
-    'finished'
+	'active',
+	'paused',
+	'finished',
 }
 
 export enum TURN_STATUS {
-    'player',
-    'enemy'
+	PLAYER = 'Player',
+	OPPONENT = 'Opponent',
 }
 
 export type GameType = {
-    status: GAME_STATUS
-    currentTurn: TURN_STATUS
+	status: GAME_STATUS
+	currentTurn: TURN_STATUS
 }

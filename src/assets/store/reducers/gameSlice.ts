@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: GameType = {
 	status: GAME_STATUS.paused,
-	currentTurn: TURN_STATUS.player,
+	currentTurn: TURN_STATUS.PLAYER,
 }
 
 const gameSlice = createSlice({

@@ -1,5 +1,5 @@
 .opponent {
-	@apply h-[45vh];
+	@apply relative h-[45vh];
 }
 
 .interface {
@@ -16,4 +16,13 @@
 
 .hero {
 	@apply absolute top-0 left-0 p-4 rounded-sm bg-black text-white;
+}
+
+.health {
+	@apply absolute top-[16px] right-[16px];
+}
+
+.health_value {
+	@apply text-8xl
+        text-white;
 }

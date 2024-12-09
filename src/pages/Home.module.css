@@ -2,10 +2,6 @@
 	@apply h-[100vh] w-full;
 }
 
-.game_data {
-	@apply absolute top-1/2 right-0 -translate-y-1/2 flex flex-col items-end;
-}
-
 .value {
 	@apply text-white text-3xl mb-4;
 }
@@ -44,9 +40,28 @@
 }
 
 .title {
-	@apply text-white text-6xl font-bold;
+	@apply text-white text-8xl font-bold;
 }
 
+.game_data {
+	@apply absolute top-1/2 right-[16px] -translate-y-1/2 flex flex-col items-end gap-[20px] w-[250px];
+}
+.game_turn {
+	@apply flex flex-col items-center w-full bg-[#212121a2] backdrop-blur-[4] rounded-[24px] h-[120px] pt-[8px];
+}
+.turn_title {
+	@apply text-white text-[14px];
+}
+.turn_value {
+	@apply text-white text-[42px];
+}
 .next_turn {
-	@apply bg-white text-xl font-bold px-4 py-2  rounded-lg;
+	@apply bg-white text-xl font-bold px-4 py-2  rounded-lg w-full;
+}
+
+.menu {
+	@apply absolute top-[16px] left-[16px];
+}
+.menu_button {
+	@apply bg-[#212121ac] border-[1px] border-solid border-[#575757] px-[8px] py-[16px] text-[20px] text-white backdrop-blur-[4] rounded-[16px];
 }

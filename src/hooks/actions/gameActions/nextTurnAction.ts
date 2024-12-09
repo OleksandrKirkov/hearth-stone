@@ -33,7 +33,7 @@ const nextTurnAction = async ({ player, game, dispatch }: ActionType) => {
 	const player1Deck = player['player1'].deck
 	const player2Deck = player['player2'].deck
 
-	const isPlayerTurn = game.currentTurn === TURN_STATUS.player
+	const isPlayerTurn = game.currentTurn === TURN_STATUS.PLAYER
 
 	const addCardDeck = async (type: keyof IPlayer) => {
 		try {
@@ -54,7 +54,7 @@ const nextTurnAction = async ({ player, game, dispatch }: ActionType) => {
 
 	if (isPlayerTurn) {
 		addCardDeck('player2')
-		dispatch(nextTurnReducer({ turn: TURN_STATUS.enemy }))
+		dispatch(nextTurnReducer({ turn: TURN_STATUS.OPPONENT }))
 		dispatch(
 			updateMana({ player: 'player2', value: player['player2'].mana + 1 })
 		)
@@ -67,7 +67,7 @@ const nextTurnAction = async ({ player, game, dispatch }: ActionType) => {
 		)
 	} else {
 		addCardDeck('player1')
-		dispatch(nextTurnReducer({ turn: TURN_STATUS.player }))
+		dispatch(nextTurnReducer({ turn: TURN_STATUS.PLAYER }))
 		dispatch(
 			updateMana({ player: 'player1', value: player['player1'].mana + 1 })
 		)

@@ -1,4 +1,5 @@
 import { CardType } from '@/types/card.type'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { CSSProperties, FC } from 'react'
 import styles from './Card.module.css'
@@ -6,20 +7,55 @@ import styles from './Card.module.css'
 interface ICard {
 	card: CardType
 	onClick?: () => void
-	enemy?: boolean
 	style?: CSSProperties
+	index: number
+	cardsLength: number
+	isEnemy?: boolean
 }
 
-const Card: FC<ICard> = ({ card, onClick, style, enemy = false }) => {
+function calculateOffset(index: number, totalCards: number) {
+	const centerIndex = (totalCards - 1) / 2
+	const distanceFromCenter = Math.abs(index - centerIndex)
+	const maxOffset = -200
+	const offset = maxOffset * (distanceFromCenter / centerIndex)
+	return index < centerIndex ? -offset : offset
+}
+
+const getStyleRotation = (
+	index: number,
+	total: number,
+	isPlayer?: boolean
+): CSSProperties => {
+	const middle = (total - 1) / 2
+	const rotate = (index - middle) * 6
+
+	const distanceFromMiddle = Math.abs(index - middle)
+	const translateY = Math.pow(distanceFromMiddle, 2) * 20
+
+	return {
+		transform: `rotate(${isPlayer ? rotate : -rotate}deg) translateY(${
+			isPlayer ? translateY : -translateY
+		}px) scale(0.70) translateX(${calculateOffset(index, 6)}px)`,
+		zIndex: 6 - index,
+	}
+}
+
+const Card: FC<ICard> = ({
+	card,
+	onClick,
+	index,
+	cardsLength,
+	isEnemy = false,
+}) => {
 	if (!card.data) return
 
 	return (
-		<div
-			className={`${styles.card} ${enemy && styles.enemy}`}
-			style={style}
+		<motion.div
+			className={`${styles.card} ${isEnemy && styles.enemy}`}
+			style={getStyleRotation(index, cardsLength, !isEnemy)}
 			onClick={onClick}
 		>
-			{enemy ? (
+			{isEnemy ? (
 				<Image
 					src={'/card/card.png'}
 					alt='back card'
@@ -176,7 +212,7 @@ const Card: FC<ICard> = ({ card, onClick, style, enemy = false }) => {
 					</div>
 				</>
 			)}
-		</div>
+		</motion.div>
 	)
 }
 

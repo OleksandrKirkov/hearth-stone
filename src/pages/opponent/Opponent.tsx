@@ -53,19 +53,19 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 	const playingCards = player.deck.filter(card => !card.isDeck)
 
 	const onTargetHandler = (id: number) => {
-		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
+		if (game.currentTurn == TURN_STATUS.PLAYER && attackerCardId) {
 			attackCard(attackerCardId, id)
 		}
 	}
 
 	const onAttackHeroHandler = () => {
-		if (game.currentTurn == TURN_STATUS.player && attackerCardId) {
+		if (game.currentTurn == TURN_STATUS.PLAYER && attackerCardId) {
 			attackHero(attackerCardId)
 		}
 	}
 
 	const onPlayCardHandler = (id: number) => {
-		if (game.currentTurn === TURN_STATUS.enemy) {
+		if (game.currentTurn === TURN_STATUS.OPPONENT) {
 		} else {
 			if (attackerCardId === null) return
 			setAttackerCardId(id)
@@ -74,7 +74,7 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			if (game.currentTurn === TURN_STATUS.enemy) {
+			if (game.currentTurn === TURN_STATUS.OPPONENT) {
 				const playCardIndex = deckCards.length
 					? Math.floor(Math.random() * deckCards.length)
 					: undefined
@@ -125,9 +125,9 @@ const Opponent: FC<IOpponent> = ({ setAttackerCardId, attackerCardId }) => {
 					))}
 			</div>
 			<p className='text-red-500'>{player.mana}</p>
-			<button className={styles.hero} onClick={onAttackHeroHandler}>
-				{player.hero}
-			</button>{' '}
+			<div className={styles.health}>
+				<p className={styles.health_value}>{player.hero}</p>
+			</div>
 		</div>
 	)
 }

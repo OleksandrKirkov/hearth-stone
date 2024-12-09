@@ -5,39 +5,12 @@ import usePlayer from '@/hooks/usePlayer'
 import { useAppSelector } from '@/hooks/useRedux'
 import { TURN_STATUS } from '@/types/game.type'
 import Image from 'next/image'
-import { CSSProperties, FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Player.module.css'
 
 interface IPlayer {
 	setAttackerCardId: (id: number) => void
 	attackerCardId: number | null
-}
-
-function calculateOffset(index: number, totalCards: number) {
-	const centerIndex = (totalCards - 1) / 2
-	const distanceFromCenter = Math.abs(index - centerIndex)
-	const maxOffset = -200
-	const offset = maxOffset * (distanceFromCenter / centerIndex)
-	return index < centerIndex ? -offset : offset
-}
-
-const getStyleRotation = (
-	index: number,
-	total: number,
-	isPlayer?: boolean
-): CSSProperties => {
-	const middle = (total - 1) / 2
-	const rotate = (index - middle) * 6
-
-	const distanceFromMiddle = Math.abs(index - middle)
-	const translateY = Math.pow(distanceFromMiddle, 2) * 20
-
-	return {
-		transform: `rotate(${isPlayer ? rotate : -rotate}deg) translateY(${
-			isPlayer ? translateY : -translateY
-		}px) scale(0.70) translateX(${calculateOffset(index, 6)}px)`,
-		zIndex: 6 - index,
-	}
 }
 
 const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
@@ -50,20 +23,20 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 	const playingCards = player.deck.filter(card => !card.isDeck)
 
 	const onAttackerCardHandler = (id: number) => {
-		if (game.currentTurn == TURN_STATUS.player) {
+		if (game.currentTurn == TURN_STATUS.PLAYER) {
 			setAttackerCardId(id)
 		}
 	}
 
 	const onPlayCardHandler = (id: number, mana: number) => {
-		if (game.currentTurn !== TURN_STATUS.player) return
+		if (game.currentTurn !== TURN_STATUS.PLAYER) return
 
 		if (mana <= player.mana) playCard(id)
 	}
 
 	useEffect(() => {
 		console.log(attackerCardId, 'attacker card')
-		if (game.currentTurn === TURN_STATUS.enemy && attackerCardId) {
+		if (game.currentTurn === TURN_STATUS.OPPONENT && attackerCardId) {
 			const cardIndex = playingCards.length
 				? Math.floor(Math.random() * playingCards.length)
 				: undefined
@@ -74,7 +47,7 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 
 	return (
 		<div className={styles.player}>
-			<div className={styles.table}>
+			{/* <div className={styles.table}>
 				{player.deck
 					.filter(card => card.isDeck === false)
 					.map((card, index) => (
@@ -82,10 +55,11 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 							onClick={() => onAttackerCardHandler(card.id)}
 							key={index}
 							card={card}
-							enemy={false}
+							isEnemy={false}
+							index={index}
 						/>
 					))}
-			</div>
+			</div> */}
 			<div className={styles.interface}>
 				<div className={styles.health}>
 					<p className={styles.health_value}>{player.hero}</p>
@@ -95,15 +69,14 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 						.filter(card => card.isDeck == true)
 						.map((card, index) => (
 							<Card
-								style={getStyleRotation(
-									index,
-									player.deck.filter(card => card.isDeck == true).length,
-									true
-								)}
+								index={index}
+								cardsLength={
+									player.deck.filter(card => card.isDeck == true).length
+								}
 								onClick={() => onPlayCardHandler(card.id, card.mana)}
-								key={index}
+								key={`${card.data.name}_${index}`}
 								card={card}
-								enemy={false}
+								isEnemy={false}
 							/>
 						))}
 				</div>
