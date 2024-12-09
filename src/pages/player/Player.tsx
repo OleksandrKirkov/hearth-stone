@@ -40,10 +40,6 @@ const getStyleRotation = (
 	}
 }
 
-// ${index < 3 ? '' : '-'}${
-// 	(index + 1) * (60 / (index + 1))
-// }
-
 const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 	const player = useAppSelector((state: RootState) => state.player)['player1']
 	const game = useAppSelector((state: RootState) => state.game)
@@ -92,14 +88,7 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 			</div>
 			<div className={styles.interface}>
 				<div className={styles.health}>
-					<Image
-						className={styles.image}
-						src='/health.png'
-						alt='health'
-						objectFit='contain'
-						fill={true}
-					/>
-					<p className={styles.value}>{player.hero}</p>
+					<p className={styles.health_value}>{player.hero}</p>
 				</div>
 				<div className={styles.deck}>
 					{player.deck
@@ -123,10 +112,10 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 						className={styles.image}
 						src='/mana.png'
 						alt='mana'
-						objectFit='contain'
+						objectFit='cover'
 						fill={true}
 					/>
-					<p className={styles.value}>{player.mana}</p>
+					<p className={styles.mana_value}>{player.mana}</p>
 				</div>
 			</div>
 		</div>

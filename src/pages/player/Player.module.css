@@ -12,12 +12,24 @@
 
 .health,
 .mana {
-	@apply relative w-1/5 h-full z-10;
+	@apply absolute z-10;
 }
 
-.value {
-	@apply absolute top-[55%] left-1/2 -translate-y-1/2 -translate-x-1/2 text-5xl
-        text-white opacity-70;
+.health {
+	@apply bottom-[16px] left-[16px];
+}
+
+.mana {
+	@apply bottom-[16px] right-[16px] w-[220px] h-[220px] flex items-center justify-center;
+}
+
+.health_value {
+	@apply text-8xl
+        text-white;
+}
+
+.mana_value {
+	@apply text-8xl text-white z-20;
 }
 
 .deck {
