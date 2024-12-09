@@ -9,7 +9,7 @@
 }
 
 body {
-	@apply w-[100vw] h-[100vh] bg-[url('/background1.jpg')] bg-no-repeat bg-center 
+	@apply w-[100vw] h-[100vh] bg-[url('/background1.jpeg')] bg-no-repeat bg-center 
         bg-cover overflow-hidden object-fill;
 }
 

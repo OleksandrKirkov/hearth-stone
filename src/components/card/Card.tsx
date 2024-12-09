@@ -11,6 +11,7 @@ interface ICard {
 	index: number
 	cardsLength: number
 	isEnemy?: boolean
+	isActive?: boolean
 }
 
 function calculateOffset(index: number, totalCards: number) {
@@ -21,11 +22,7 @@ function calculateOffset(index: number, totalCards: number) {
 	return index < centerIndex ? -offset : offset
 }
 
-const getStyleRotation = (
-	index: number,
-	total: number,
-	isPlayer?: boolean
-): CSSProperties => {
+const getStyleRotation = (index: number, total: number, isPlayer?: boolean) => {
 	const middle = (total - 1) / 2
 	const rotate = (index - middle) * 6
 
@@ -33,9 +30,10 @@ const getStyleRotation = (
 	const translateY = Math.pow(distanceFromMiddle, 2) * 20
 
 	return {
-		transform: `rotate(${isPlayer ? rotate : -rotate}deg) translateY(${
-			isPlayer ? translateY : -translateY
-		}px) scale(0.70) translateX(${calculateOffset(index, 6)}px)`,
+		y: isPlayer ? translateY : -translateY,
+		rotate: isPlayer ? rotate : -rotate,
+		scale: 0.7,
+		x: calculateOffset(index, 6),
 		zIndex: 6 - index,
 	}
 }
@@ -46,6 +44,7 @@ const Card: FC<ICard> = ({
 	index,
 	cardsLength,
 	isEnemy = false,
+	isActive = true,
 }) => {
 	if (!card.data) return
 
@@ -54,8 +53,36 @@ const Card: FC<ICard> = ({
 			className={`${styles.card} ${isEnemy && styles.enemy}`}
 			style={getStyleRotation(index, cardsLength, !isEnemy)}
 			onClick={onClick}
+			animate={
+				card.isDeck
+					? { ...getStyleRotation(index, cardsLength, !isEnemy) }
+					: {
+							rotate: 0,
+							scale: 0.7,
+							y: 0,
+							x: 0,
+					  }
+			}
+			whileHover={
+				!isEnemy
+					? {
+							rotate: 0,
+							scale: 1,
+							y: -160,
+							zIndex: 20,
+					  }
+					: isActive
+					? {
+							rotate: 0,
+							scale: 1,
+							y: 100,
+							zIndex: 20,
+					  }
+					: {}
+			}
+			transition={{ duration: 0.4 }}
 		>
-			{isEnemy ? (
+			{!isActive ? (
 				<Image
 					src={'/card/card.png'}
 					alt='back card'

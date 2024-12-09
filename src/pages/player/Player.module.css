@@ -33,7 +33,7 @@
 }
 
 .deck {
-	@apply flex justify-center w-full absolute left-0 bottom-0 translate-y-[120px] gap-[-5px];
+	@apply flex justify-center w-full absolute left-0 bottom-0 translate-y-[120px] gap-[-5px] z-50;
 }
 
 .image {

@@ -51,6 +51,7 @@ const Main: NextPageWithLayout = () => {
 					className={styles.title}
 					animate={{ scale: 1 }}
 					initial={{ scale: 6 }}
+					transition={{ duration: 0.2 }}
 				>
 					HEARTH-STONE
 				</motion.h1>
@@ -71,9 +72,14 @@ const Main: NextPageWithLayout = () => {
 		!isLoading && (
 			<>
 				<div className={styles.wrapper}>
-					<div className={styles.menu}>
+					<motion.div
+						className={styles.menu}
+						animate={{ x: 0, opacity: 1 }}
+						initial={{ x: -100, opacity: 0 }}
+						transition={{ delay: 0.1, duration: 0.5 }}
+					>
 						<button className={styles.menu_button}>menu</button>
-					</div>
+					</motion.div>
 					<Opponent
 						setAttackerCardId={(id: number) => setAttackerCardState(id)}
 						attackerCardId={attackerCardState}
@@ -85,13 +91,24 @@ const Main: NextPageWithLayout = () => {
 						attackerCardId={attackerCardState}
 					/>
 					<div className={styles.game_data}>
-						<div className={styles.game_turn}>
+						<motion.div
+							className={styles.game_turn}
+							animate={{ x: 0, opacity: 1 }}
+							initial={{ x: 100, opacity: 0 }}
+							transition={{ delay: 0.1, duration: 0.5 }}
+						>
 							<p className={styles.turn_title}>Current Turn:</p>
 							<p className={styles.turn_value}>{game.currentTurn}</p>
-						</div>
-						<button className={styles.next_turn} onClick={nextTurn}>
+						</motion.div>
+						<motion.button
+							className={styles.next_turn}
+							onClick={nextTurn}
+							animate={{ x: 0, opacity: 1 }}
+							initial={{ x: 100, opacity: 0 }}
+							transition={{ delay: 0.5, duration: 0.5 }}
+						>
 							Next turn
-						</button>
+						</motion.button>
 					</div>
 				</div>
 			</>

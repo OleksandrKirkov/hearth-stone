@@ -4,6 +4,7 @@ import useAction from '@/hooks/useAction'
 import usePlayer from '@/hooks/usePlayer'
 import { useAppSelector } from '@/hooks/useRedux'
 import { TURN_STATUS } from '@/types/game.type'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FC, useEffect } from 'react'
 import styles from './Player.module.css'
@@ -47,7 +48,8 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 
 	return (
 		<div className={styles.player}>
-			{/* <div className={styles.table}>
+			{/* <div className={styles.table_wrapper}> */}
+			<div className={styles.table}>
 				{player.deck
 					.filter(card => card.isDeck === false)
 					.map((card, index) => (
@@ -57,40 +59,56 @@ const Player: FC<IPlayer> = ({ setAttackerCardId, attackerCardId }) => {
 							card={card}
 							isEnemy={false}
 							index={index}
+							cardsLength={
+								player.deck.filter(card => card.isDeck == false).length
+							}
 						/>
 					))}
-			</div> */}
-			<div className={styles.interface}>
-				<div className={styles.health}>
-					<p className={styles.health_value}>{player.hero}</p>
-				</div>
-				<div className={styles.deck}>
-					{player.deck
-						.filter(card => card.isDeck == true)
-						.map((card, index) => (
-							<Card
-								index={index}
-								cardsLength={
-									player.deck.filter(card => card.isDeck == true).length
-								}
-								onClick={() => onPlayCardHandler(card.id, card.mana)}
-								key={`${card.data.name}_${index}`}
-								card={card}
-								isEnemy={false}
-							/>
-						))}
-				</div>
-				<div className={styles.mana}>
-					<Image
-						className={styles.image}
-						src='/mana.png'
-						alt='mana'
-						objectFit='cover'
-						fill={true}
-					/>
-					<p className={styles.mana_value}>{player.mana}</p>
-				</div>
 			</div>
+			{/* </div> */}
+			{/* <div className={styles.interface}> */}
+			<div className={styles.health}>
+				<p className={styles.health_value}>{player.hero}</p>
+			</div>
+			<div className={styles.deck}>
+				{player.deck
+					// {cards
+					.filter(card => card.isDeck == true)
+					.map((card, index) => (
+						<Card
+							index={index}
+							cardsLength={
+								player.deck.filter(card => card.isDeck == true).length
+								// cards.length
+							}
+							onClick={() => onPlayCardHandler(card.id, card.mana)}
+							key={`${card.data.name}_${index}`}
+							card={card}
+							isEnemy={false}
+						/>
+					))}
+			</div>
+			<motion.div
+				className={styles.mana}
+				// initial={{ y: 5 }}
+				animate={{ y: [0, 5, 0] }}
+				transition={{
+					duration: 2,
+					repeat: Infinity,
+					repeatType: 'loop',
+					ease: 'easeInOut',
+				}}
+			>
+				<Image
+					className={styles.image}
+					src='/mana.png'
+					alt='mana'
+					objectFit='cover'
+					fill={true}
+				/>
+				<p className={styles.mana_value}>{player.mana}</p>
+			</motion.div>
+			{/* </div> */}
 		</div>
 	)
 }

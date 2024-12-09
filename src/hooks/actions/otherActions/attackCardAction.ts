@@ -1,5 +1,11 @@
-import { deleteCard, updateCard } from '@/assets/store/reducers/playerSlice'
+import { updateGameStatus } from '@/assets/store/reducers/gameSlice'
+import {
+	deleteCard,
+	updateCard,
+	updateHero,
+} from '@/assets/store/reducers/playerSlice'
 import { ActionType } from '@/types/action.type'
+import { GAME_STATUS } from '@/types/game.type'
 import { IPlayer } from '@/types/player.type'
 
 // Attacker - той хто атакує
@@ -55,6 +61,17 @@ const attackCardAction = ({
 			cardId: defenderId,
 		})
 	)
+
+	dispatch(
+		updateHero({
+			player: playerType,
+			value: player[playerType].hero + attackerCard.attack,
+		})
+	)
+
+	if (player[playerType].hero + attackerCard.attack >= 4) {
+		dispatch(updateGameStatus({ status: GAME_STATUS.finished }))
+	}
 
 	const updatedDefenderCard = player[defender].deck.find(
 		card => card.id === defenderId
